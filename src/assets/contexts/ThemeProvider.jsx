@@ -1,6 +1,6 @@
-import { createContext, useState, useEffect, useContext } from "react";
-import { lightTheme, darkTheme } from './theme';
-import { ThemeProvider as StyledThemeProvider } from 'styled-components';
+import React, { createContext, useState, useEffect, useContext } from "react";
+import { lightTheme, darkTheme } from "./theme";
+import { ThemeProvider as StyledThemeProvider } from "styled-components";
 
 const ThemeContext = createContext();
 
@@ -8,13 +8,17 @@ export const useTheme = () => useContext(ThemeContext);
 
 export const ThemeProvider = ({ children }) => {
   const [isDarkTheme, setIsDarkTheme] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
-    if (savedTheme) {
-      setIsDarkTheme(savedTheme === "dark");
-    }
+    setIsDarkTheme(savedTheme ? savedTheme === "dark" : false);
+    setIsLoaded(true);
   }, []);
+
+  if (!isLoaded) {
+    return <div>Loading...</div>;
+  }
 
   const toggleTheme = () => {
     setIsDarkTheme((prevTheme) => {
@@ -28,9 +32,7 @@ export const ThemeProvider = ({ children }) => {
 
   return (
     <ThemeContext.Provider value={{ isDarkTheme, toggleTheme }}>
-      <StyledThemeProvider theme={theme}>
-        {children}
-      </StyledThemeProvider>
+      <StyledThemeProvider theme={theme}>{children}</StyledThemeProvider>
     </ThemeContext.Provider>
   );
 };

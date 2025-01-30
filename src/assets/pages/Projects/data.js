@@ -1,39 +1,39 @@
-import PinterestClone from '../../images/projects/ClonePinterest.jpg';
-import BMICalculator from '../../images/projects/CalculadoraIMC.png';
-import WreckItRalphGame from '../../images/projects/GameDetonaRalph.png';
-import MemoryGame from '../../images/projects/GameJogoMemoria.png';
-import StrangerThingsPage from '../../images/projects/MundoInvertido.png';
-import PianoSimulator from '../../images/projects/PianoSimulator.png';
+import PinterestClone from "../../images/projects/ClonePinterest.jpg";
+import BMICalculator from "../../images/projects/CalculadoraIMC.png";
+import WreckItRalphGame from "../../images/projects/GameDetonaRalph.png";
+import MemoryGame from "../../images/projects/GameJogoMemoria.png";
+import StrangerThingsPage from "../../images/projects/MundoInvertido.png";
+import PianoSimulator from "../../images/projects/PianoSimulator.png";
 
 export const projects = [
   {
-    title: 'Clone do Pinterest',
+    title: "Clone do Pinterest",
     image: PinterestClone,
-    reverse: false
+    reverse: false,
   },
   {
-    title: 'Jogo do Detona Ralph',
+    title: "Jogo do Detona Ralph",
     image: WreckItRalphGame,
-    reverse: true
+    reverse: true,
   },
   {
-    title: 'Simulador de Piano',
+    title: "Simulador de Piano",
     image: PianoSimulator,
-    reverse: false
+    reverse: false,
   },
   {
-    title: 'Calculadora de IMC',
+    title: "Calculadora de IMC",
     image: BMICalculator,
-    reverse: true
+    reverse: true,
   },
   {
-    title: 'Landing page de Stranger Things',
+    title: "Landing page de Stranger Things",
     image: StrangerThingsPage,
-    reverse: false
+    reverse: false,
   },
   {
-    title: 'Jogo da memória',
+    title: "Jogo da memória",
     image: MemoryGame,
-    reverse: true
-  }
+    reverse: true,
+  },
 ];

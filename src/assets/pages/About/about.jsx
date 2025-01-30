@@ -1,10 +1,10 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const AboutSection = styled.section`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 80px 40px;
+  padding: 100px 40px;
   background-color: ${({ theme }) => theme.background};
 
   @media (max-width: 768px) {
@@ -29,7 +29,7 @@ export const AboutText = styled.p`
   color: ${({ theme }) => theme.text};
   margin-bottom: 20px;
   max-width: 650px;
-  text-align: left;
+  text-align: justify;
 
   @media (max-width: 768px) {
     max-width: 100%;
@@ -41,22 +41,42 @@ export const SocialLinks = styled.div`
   display: flex;
   gap: 20px;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 40px;
 `;
 
 export const SocialLink = styled.a`
-  font-size: 1.2rem;
-  color: ${({ theme }) => theme.text};
+  display: inline-block;
+  font-size: 1rem;
+  color: ${({ theme }) => (theme.text ? "#000" : "#0000")};
+  background: ${({ theme }) =>
+    theme.background === "#121212"
+      ? "#fff"
+      : "linear-gradient(90deg, #ff416c, #ff4b2b)"};
+  padding: 12px 24px;
+  text-transform: uppercase;
+  font-weight: bold;
   text-decoration: none;
-  transition: color 0.3s ease;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-align: center;
 
   &:hover {
-    color: ${({ theme }) => theme.primary};
+    background: ${({ theme }) =>
+      theme.background === "#121212"
+        ? "#fff"
+        : "linear-gradient(90deg, #ff416c, #ff4b2b)"};
+    color: ${({ theme }) => theme.background === "#121212" && "#000"};
+    transform: translateY(-3px);
+    box-shadow: ${({ theme }) =>
+      theme.background === "#121212"
+        ? "0 5px 15px rgba(255, 255, 255, 0.4)"
+        : "0 5px 15px rgba(255, 75, 43, 0.4)"};
   }
 `;
 
 export const Image = styled.img`
-  width: 200px;
+  width: 250px;
   border-radius: 50%;
   margin-top: 20px;
 

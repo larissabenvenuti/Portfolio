@@ -1,21 +1,21 @@
 export const lightTheme = {
-  background: "#f9f9f9",
-  text: "#333333",
-  primary: "#007BFF",
-  secondary: "#6c757d",
-  headerBackground: "#ffffff",
-  linkHover: "#0056b3",
-  cardBackground: "#ffffff",
-  shadow: "0 4px 10px rgba(0, 0, 0, 0.1)"
+  background: "#fff",
+  text: "#000",
+  gradient1: "rgba(209, 209, 209, 0.3)",
+  gradient2: "rgba(150, 150, 150, 0.2)",
+  gradient3: "rgba(100, 100, 100, 0.4)",
+  gradient4: "rgba(50, 50, 50, 0.5)",
+  primaryColor: "#ff416c",
+  secondaryColor: "#ff4b2b",
 };
 
 export const darkTheme = {
   background: "#121212",
-  text: "#e0e0e0",
-  primary: "#1d72b8",
-  secondary: "#6c757d",
-  headerBackground: "#1c1c1c",
-  linkHover: "#007bff",
-  cardBackground: "#1f1f1f",
-  shadow: "0 4px 12px rgba(0, 0, 0, 0.7)"
+  text: "#fff",
+  gradient1: "rgba(50, 50, 50, 0.3)",
+  gradient2: "rgba(100, 100, 100, 0.2)",
+  gradient3: "rgba(150, 150, 150, 0.4)",
+  gradient4: "rgba(200, 200, 200, 0.5)",
+  primaryColor: "#ff416c",
+  secondaryColor: "#ff4b2b",
 };

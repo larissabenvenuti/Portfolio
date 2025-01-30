@@ -12,7 +12,7 @@ export const FooterContainer = styled.footer`
 `;
 
 export const FooterText = styled.p`
-  font-size: 1rem;
+  font-size: 0.7rem;
   color: ${({ theme }) => theme.text};
   margin: 0;
 
