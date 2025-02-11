@@ -4,20 +4,26 @@ import { useTheme } from "../../contexts/ThemeProvider";
 
 export const Hero = () => {
   const { isDarkTheme } = useTheme();
+  const backgroundColor = isDarkTheme ? "#000" : "#fff";
+  const titleColor = isDarkTheme ? "#fff" : "#000";
+  const descriptionColor = isDarkTheme ? "#ddd" : "#000";
 
   return (
     <HeroContainer
       id="home"
-      style={{ backgroundColor: isDarkTheme ? "#333" : "#fff" }}
+      style={{ backgroundColor }}
+      aria-labelledby="heroTitle"
     >
       <div>
-        <HeroTitle style={{ color: isDarkTheme ? "#fff" : "#000" }}>
+        <HeroTitle
+          id="heroTitle"
+          style={{ color: titleColor }}
+          aria-label="Título principal"
+        >
           Larissa Benvenuti
         </HeroTitle>
-        <HeroDescription style={{ color: isDarkTheme ? "#ddd" : "#333" }}>
-          Desenvolvedora full-stack apaixonada por transformar ideias em
-          soluções inovadoras e impactantes. Pronta para levar seu projeto ao
-          próximo nível.
+        <HeroDescription style={{ color: descriptionColor }}>
+          Desenvolvedora front-end apaixonada por transformar ideias em soluções inovadoras e impactantes. Pronta para levar seu projeto ao próximo nível.
         </HeroDescription>
       </div>
     </HeroContainer>

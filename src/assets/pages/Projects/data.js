@@ -1,39 +1,24 @@
 import PinterestClone from "../../images/projects/ClonePinterest.jpg";
-import BMICalculator from "../../images/projects/CalculadoraIMC.png";
 import WreckItRalphGame from "../../images/projects/GameDetonaRalph.png";
-import MemoryGame from "../../images/projects/GameJogoMemoria.png";
-import StrangerThingsPage from "../../images/projects/MundoInvertido.png";
-import PianoSimulator from "../../images/projects/PianoSimulator.png";
+import YourPlannerTwo from "../../images/projects/YourPlannerTwo.png";
 
 export const projects = [
   {
+    title: "Your Planner",
+    image: YourPlannerTwo,
+    link: "https://github.com/larissabenvenuti/Your-Planner",
+    reverse: true,
+  },
+  {
     title: "Clone do Pinterest",
     image: PinterestClone,
+    link: "https://github.com/larissabenvenuti/Clone-Pinterest",
     reverse: false,
   },
   {
     title: "Jogo do Detona Ralph",
     image: WreckItRalphGame,
-    reverse: true,
-  },
-  {
-    title: "Simulador de Piano",
-    image: PianoSimulator,
-    reverse: false,
-  },
-  {
-    title: "Calculadora de IMC",
-    image: BMICalculator,
-    reverse: true,
-  },
-  {
-    title: "Landing page de Stranger Things",
-    image: StrangerThingsPage,
-    reverse: false,
-  },
-  {
-    title: "Jogo da memória",
-    image: MemoryGame,
+    link: "https://github.com/larissabenvenuti/Game-DetonaRalph",
     reverse: true,
   },
 ];

@@ -16,27 +16,17 @@ export const About = () => {
   return (
     <AboutSection
       id="sobre"
-      style={{ backgroundColor: isDarkTheme ? "#333" : "#fff" }}
+      style={{ backgroundColor: isDarkTheme ? "#000" : "#fff" }}
+      aria-labelledby="aboutTitle"
     >
       <div>
-        <AboutTitle style={{ color: isDarkTheme ? "#fff" : "#000" }}>
+        <AboutTitle id="aboutTitle" style={{ color: isDarkTheme ? "#fff" : "#000" }}>
           Sobre
         </AboutTitle>
-        <AboutText style={{ color: isDarkTheme ? "#ddd" : "#333" }}>
-          Olá, sou Larissa Benvenuti! Nascida e criada no interior do Rio de
-          Janeiro, sempre fui fascinada por tecnologia e suas infinitas
-          possibilidades. Com uma formação sólida em desenvolvimento full-stack
-          e atualmente cursando Sistemas de Computação na Universidade Federal
-          Fluminense, minha jornada no mundo da programação é marcada pela
-          constante busca por aprender e aplicar novas tecnologias. Tenho
-          experiência na construção de sistemas, com foco em desenvolvimento web
-          e game dev, utilizando tecnologias como React, JavaScript, TypeScript,
-          Java, entre outras. Com o objetivo de me manter atualizada, estou
-          sempre explorando novos desafios e buscando melhorar minha capacidade
-          de criar experiências mais intuitivas e impactantes para os usuários.
-          Vamos juntos criar experiências digitais que fazem a diferença?
+        <AboutText style={{ color: isDarkTheme ? "#ddd" : "#000" }}>
+          Olá, sou Larissa Benvenuti! Nascida e criada no interior do Rio de Janeiro, sempre fui fascinada por tecnologia e suas infinitas possibilidades. Com uma formação sólida em desenvolvimento full-stack e atualmente cursando Sistemas de Computação na Universidade Federal Fluminense, minha jornada no mundo da programação é marcada pela constante busca por aprender e aplicar novas tecnologias. Tenho experiência na construção de sistemas, com foco em desenvolvimento web e game dev, utilizando tecnologias como React, JavaScript, TypeScript, Java, entre outras. Com o objetivo de me manter atualizada, estou sempre explorando novos desafios e buscando melhorar minha capacidade de criar experiências mais intuitivas e impactantes para os usuários. Vamos juntos criar experiências digitais que fazem a diferença?
         </AboutText>
-        <SocialLinks>
+        <SocialLinks aria-label="Links sociais">
           <SocialLink
             href="https://www.linkedin.com/in/larissabenvenuti/"
             target="_blank"
@@ -55,7 +45,11 @@ export const About = () => {
           </SocialLink>
         </SocialLinks>
       </div>
-      <Image src={avatar} alt="Foto da desenvolvedora" />
+      <Image
+        src={avatar}
+        alt="Foto da Larissa Benvenuti, desenvolvedora"
+        role="img"
+      />
     </AboutSection>
   );
 };

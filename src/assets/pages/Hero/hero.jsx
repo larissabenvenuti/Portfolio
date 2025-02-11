@@ -31,11 +31,10 @@ export const HeroContainer = styled.section`
       50% 0;
   margin-top: 60px;
   position: relative;
-
   @media (max-width: 768px) {
     flex-direction: column;
     padding: 100px 20px;
-    text-align: justify;
+    text-align: center;
   }
 `;
 
@@ -51,9 +50,13 @@ export const HeroTitle = styled.h1`
   -webkit-text-fill-color: transparent;
   margin-bottom: 20px;
   text-align: left;
-
+  transition: transform 0.3s ease, color 0.3s ease;
+  &:hover {
+    transform: translateY(-10px);
+  }
   @media (max-width: 768px) {
     font-size: 2.5rem;
+    text-align: center;
   }
 `;
 
@@ -64,9 +67,9 @@ export const HeroDescription = styled.p`
   max-width: 750px;
   text-align: justify;
   line-height: 1.6;
-
   @media (max-width: 768px) {
     max-width: 100%;
     font-size: 1.2rem;
+    text-align: center
   }
-`;
+`
