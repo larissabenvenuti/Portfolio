@@ -16,15 +16,24 @@ export const About = () => {
   return (
     <AboutSection
       id="sobre"
-      style={{ backgroundColor: isDarkTheme ? "#000" : "#fff" }}
       aria-labelledby="aboutTitle"
+      theme={{ isDarkTheme }}
     >
       <div>
-        <AboutTitle id="aboutTitle" style={{ color: isDarkTheme ? "#fff" : "#000" }}>
-          Sobre
-        </AboutTitle>
-        <AboutText style={{ color: isDarkTheme ? "#ddd" : "#000" }}>
-          Olá, sou Larissa Benvenuti! Nascida e criada no interior do Rio de Janeiro, sempre fui fascinada por tecnologia e suas infinitas possibilidades. Com uma formação sólida em desenvolvimento full-stack e atualmente cursando Sistemas de Computação na Universidade Federal Fluminense, minha jornada no mundo da programação é marcada pela constante busca por aprender e aplicar novas tecnologias. Tenho experiência na construção de sistemas, com foco em desenvolvimento web e game dev, utilizando tecnologias como React, JavaScript, TypeScript, Java, entre outras. Com o objetivo de me manter atualizada, estou sempre explorando novos desafios e buscando melhorar minha capacidade de criar experiências mais intuitivas e impactantes para os usuários. Vamos juntos criar experiências digitais que fazem a diferença?
+        <AboutTitle theme={{ isDarkTheme }}>Sobre</AboutTitle>
+        <AboutText theme={{ isDarkTheme }}>
+          Olá, sou Larissa Benvenuti! Nascida e criada no interior do Rio de
+          Janeiro, sempre fui fascinada por tecnologia e suas infinitas
+          possibilidades. Com uma formação sólida em desenvolvimento full-stack
+          e atualmente cursando Sistemas de Computação na Universidade Federal
+          Fluminense, minha jornada no mundo da programação é marcada pela
+          constante busca por aprender e aplicar novas tecnologias. Tenho
+          experiência na construção de sistemas, com foco em desenvolvimento web
+          e mobile, além de um interesse em game dev, utilizando tecnologias como React, JavaScript, TypeScript,
+          Java, Python, entre outras. Com o objetivo de me manter atualizada, estou
+          sempre explorando novos desafios e buscando melhorar minha capacidade
+          de criar experiências mais intuitivas e impactantes para os usuários.
+          Vamos juntos criar experiências digitais que fazem a diferença?
         </AboutText>
         <SocialLinks aria-label="Links sociais">
           <SocialLink
@@ -32,6 +41,7 @@ export const About = () => {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Perfil no LinkedIn"
+            theme={{ isDarkTheme }}
           >
             LinkedIn
           </SocialLink>
@@ -40,6 +50,7 @@ export const About = () => {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Perfil no GitHub"
+            theme={{ isDarkTheme }}
           >
             GitHub
           </SocialLink>
@@ -47,7 +58,7 @@ export const About = () => {
       </div>
       <Image
         src={avatar}
-        alt="Foto da Larissa Benvenuti, desenvolvedora"
+        alt="Foto de Larissa Benvenuti, desenvolvedora"
         role="img"
       />
     </AboutSection>

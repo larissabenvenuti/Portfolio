@@ -5,59 +5,69 @@ export const HeaderContainer = styled.header`
   top: 0;
   left: 0;
   right: 0;
-  width: 100vw;
-  padding: 10px 10px;
-  background-color: ${({ theme }) => theme.headerBackground};
+  width: 100%;
+  height: 60px;
+  padding: 1rem;
+  background-color: ${({ theme }) => (theme.isDark ? "#000000" : "#ffffff")};
   display: flex;
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 999;
-  overflow: hidden;
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 15px 20px;
-  }
 `;
 
 export const Nav = styled.nav`
   display: flex;
   align-items: center;
+  margin-right: auto;
+  background-color: ${({ theme }) => (theme.isDark ? "#000000" : "#ffffff")};
 `;
 
 export const Menu = styled.ul`
   display: flex;
-  gap: 30px;
+  gap: 2rem;
   list-style: none;
-  margin-right: 20px;
+  margin: 0;
+  padding: 0;
+  background-color: ${({ theme }) => (theme.isDark ? "#000000" : "#ffffff")};
 
-  @media (max-width: 1300px) {
-    display: flex;
+  &.mobile {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    flex-direction: column;
+    background-color: ${({ theme }) => (theme.isDark ? "#000000" : "#ffffff")};
+    padding: 1rem;
+    gap: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: none;
   }
 
-  @media (max-width: 768px) {
-    display: none;
+  &.mobile.open {
+    display: flex;
   }
 `;
 
 export const MenuItem = styled.li`
-  padding: 10px 15px;
+  padding: 0.5rem;
   transition: transform 0.3s ease;
-  border-radius: 5px;
+  background-color: ${({ theme }) => (theme.isDark ? "#000000" : "#ffffff")};
 
-  &:hover {
-    transform: translateY(-3px);
+  .mobile & {
+    width: 100%;
+    text-align: center;
+    &:hover {
+      background-color: ${({ theme }) => (theme.isDark ? "#1a1a1a" : "#f0f0f0")};
+    }
   }
 `;
 
 export const MenuLink = styled.a`
   font-size: 1.2rem;
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => (theme.isDark ? "#ffffff" : "#000000")};
   text-decoration: none;
   font-weight: 500;
-  display: inline-block;
   transition: color 0.3s ease;
 
   &:hover {
@@ -71,30 +81,26 @@ export const MenuLink = styled.a`
 export const ThemeToggle = styled.button`
   background: transparent;
   border: none;
-  padding: 10px;
+  padding: 0.5rem;
   cursor: pointer;
   transition: transform 0.3s ease;
-  color: ${({ theme }) => theme.text};
-  font-size: 1.5rem;
+  color: ${({ theme }) => (theme.isDark ? "#ffffff" : "#000000")};
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
 
   &:hover {
-    transform: scale(1.1);
-  }
-
-  @media (max-width: 768px) {
-    margin-left: auto;
+    transform: translateY(-50%) scale(1.1);
   }
 `;
 
 export const MobileMenu = styled.div`
-  display: none;
-
-  @media (max-width: 768px) {
-    display: block;
-    position: absolute;
-    top: 15px;
-    right: 15px;
-  }
+  min-width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  background-color: ${({ theme }) => (theme.isDark ? "#000000" : "#ffffff")};
 `;
 
 export const MobileMenuButton = styled.button`
@@ -102,5 +108,6 @@ export const MobileMenuButton = styled.button`
   border: none;
   cursor: pointer;
   font-size: 1.5rem;
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => (theme.isDark ? "#ffffff" : "#000000")};
+  padding: 0.5rem;
 `;

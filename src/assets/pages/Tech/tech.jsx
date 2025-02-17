@@ -5,6 +5,7 @@ export const TechContainer = styled.section`
   text-align: left;
   @media (max-width: 768px) {
     padding: 20px;
+    margin-top: 30px;
     text-align: center;
   }
 `;

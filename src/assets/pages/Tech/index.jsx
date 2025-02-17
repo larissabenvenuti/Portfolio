@@ -8,7 +8,7 @@ export const Tech = () => {
 
     return (
       <TechContainer>
-        <TechTitle>Tecnologias que eu utilizo</TechTitle>
+        <TechTitle>Principais Tecnologias</TechTitle>
 
         <TechList aria-label="Lista de Tecnologias">
           {technologiesData.map((tech) => (

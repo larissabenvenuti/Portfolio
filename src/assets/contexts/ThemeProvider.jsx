@@ -7,18 +7,22 @@ const ThemeContext = createContext();
 export const useTheme = () => useContext(ThemeContext);
 
 export const ThemeProvider = ({ children }) => {
-  const [isDarkTheme, setIsDarkTheme] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const getInitialTheme = () => {
+    if (typeof window !== "undefined") {
+      const savedTheme = localStorage.getItem("theme");
+      return savedTheme ? savedTheme === "dark" : false;
+    }
+    return false;
+  };
+
+  const [isDarkTheme, setIsDarkTheme] = useState(getInitialTheme);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
-    setIsDarkTheme(savedTheme ? savedTheme === "dark" : false);
-    setIsLoaded(true);
+    if (savedTheme) {
+      setIsDarkTheme(savedTheme === "dark");
+    }
   }, []);
-
-  if (!isLoaded) {
-    return <div>Loading...</div>;
-  }
 
   const toggleTheme = () => {
     setIsDarkTheme((prevTheme) => {

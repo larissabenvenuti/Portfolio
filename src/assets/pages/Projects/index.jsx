@@ -8,7 +8,6 @@ import {
   ProjectInfo,
   ProjectsTitle,
   ProjectTitle,
-  ProjectDescription,
 } from "./projects";
 import { projects } from "./data";
 
@@ -16,35 +15,23 @@ export const Projects = () => {
   const { isDarkTheme } = useTheme();
 
   return (
-    <ProjectsSection
-      id="projetos"
-      style={{ backgroundColor: isDarkTheme ? "#000" : "#fff" }}
-    >
-      <ProjectsTitle style={{ color: isDarkTheme ? "#fff" : "#000" }}>
-        Projetos
-      </ProjectsTitle>
+    <ProjectsSection id="projetos">
+      <ProjectsTitle>Projetos</ProjectsTitle>
       <ProjectGrid>
         {projects.map((project) => (
-          <ProjectCard key={project.title} isDarkTheme={isDarkTheme}>
+          <ProjectCard key={project.title}>
             <a
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
               style={{
-                textDecoration: "none",  
-                outline: "none",        
+                textDecoration: "none",
+                outline: "none",
               }}
             >
               <ProjectImage src={project.image} alt={project.title} />
               <ProjectInfo>
-                <ProjectTitle style={{ color: isDarkTheme ? "#fff" : "#000" }}>
-                  {project.title}
-                </ProjectTitle>
-                <ProjectDescription
-                  style={{ color: isDarkTheme ? "#ddd" : "#333" }}
-                >
-                  {project.description}
-                </ProjectDescription>
+                <ProjectTitle>{project.title}</ProjectTitle>
               </ProjectInfo>
             </a>
           </ProjectCard>

@@ -16,48 +16,90 @@ import { Link } from "react-scroll";
 export const Header = () => {
   const { isDarkTheme, toggleTheme } = useTheme();
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-  const toggleMobileMenu = () => setMobileMenuOpen(!isMobileMenuOpen);
+  const [windowWidth, setWindowWidth] = useState(
+    typeof window !== "undefined" ? window.innerWidth : 0
+  );
 
   useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth);
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+      if (window.innerWidth > 768) {
+        setMobileMenuOpen(false);
+      }
+    };
 
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen((prev) => !prev);
+  };
+
   return (
-    <HeaderContainer
-      style={{
-        backgroundColor: isDarkTheme ? "#333" : "#fff",
-        padding: windowWidth > 768 ? "10px 10px" : "15px 20px",
-      }}
-    >
+    <HeaderContainer>
       <Nav>
-        <Menu
-          style={{
-            display: isMobileMenuOpen || windowWidth > 768 ? "flex" : "none",
-          }}
-        >
-          {["Home", "Projetos", "Sobre"].map((item) => (
-            <MenuItem key={item}>
-              <Link to={item.toLowerCase()} smooth={true} duration={500}>
-                <MenuLink>{item}</MenuLink>
+        {windowWidth > 768 ? (
+          <Menu>
+            <MenuItem>
+              <Link to="home" smooth={true} duration={500}>
+                <MenuLink>Home</MenuLink>
               </Link>
             </MenuItem>
-          ))}
-        </Menu>
+            <MenuItem>
+              <Link to="projetos" smooth={true} duration={500}>
+                <MenuLink>Projetos</MenuLink>
+              </Link>
+            </MenuItem>
+            <MenuItem>
+              <Link to="sobre" smooth={true} duration={500}>
+                <MenuLink>Sobre</MenuLink>
+              </Link>
+            </MenuItem>
+          </Menu>
+        ) : (
+          <MobileMenu>
+            <MobileMenuButton
+              onClick={toggleMobileMenu}
+              aria-label={`Menu ${isMobileMenuOpen ? "fechado" : "aberto"}`}
+            >
+              {isMobileMenuOpen ? "×" : "☰"}
+            </MobileMenuButton>
+            <Menu className={`mobile ${isMobileMenuOpen ? "open" : ""}`}>
+              <MenuItem>
+                <Link
+                  to="home"
+                  smooth={true}
+                  duration={500}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <MenuLink>Home</MenuLink>
+                </Link>
+              </MenuItem>
+              <MenuItem>
+                <Link
+                  to="projetos"
+                  smooth={true}
+                  duration={500}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <MenuLink>Projetos</MenuLink>
+                </Link>
+              </MenuItem>
+              <MenuItem>
+                <Link
+                  to="sobre"
+                  smooth={true}
+                  duration={500}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <MenuLink>Sobre</MenuLink>
+                </Link>
+              </MenuItem>
+            </Menu>
+          </MobileMenu>
+        )}
       </Nav>
-
-      <MobileMenu>
-        <MobileMenuButton
-          onClick={toggleMobileMenu}
-          aria-label={`Abrir menu ${isMobileMenuOpen ? "fechado" : "aberto"}`}
-        >
-          {isMobileMenuOpen ? "X" : "☰"}
-        </MobileMenuButton>
-      </MobileMenu>
 
       <ThemeToggle
         onClick={toggleTheme}
@@ -69,3 +111,5 @@ export const Header = () => {
     </HeaderContainer>
   );
 };
+
+export default Header;
