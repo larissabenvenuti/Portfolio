@@ -6,7 +6,7 @@ export const projects = [
   {
     title: "Your Planner",
     image: YourPlannerTwo,
-    link: "https://github.com/larissabenvenuti/Your-Planner",
+    link: "https://your-planner.vercel.app/",
     reverse: true,
   },
   {
