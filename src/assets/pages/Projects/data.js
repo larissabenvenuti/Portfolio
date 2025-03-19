@@ -1,6 +1,6 @@
 import PinterestClone from "../../images/projects/ClonePinterest.jpg";
 import BrazilRestaurants from "../../images/projects/RestaurantesBrasil.png";
-import YourPlannerTwo from "../../images/projects/YourPlannerTwo.png";
+import MindAlign from "../../images/projects/MindAlign.png";
 
 export const projects = [
   {
@@ -10,8 +10,8 @@ export const projects = [
     reverse: true,
   },
   {
-    title: "Your Planner",
-    image: YourPlannerTwo,
+    title: "MindAlign",
+    image: MindAlign,
     link: "https://your-planner.vercel.app/",
     reverse: false,
   },
