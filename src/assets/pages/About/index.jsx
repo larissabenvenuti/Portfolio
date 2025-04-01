@@ -29,10 +29,11 @@ export const About = () => {
           Fluminense, minha jornada no mundo da programação é marcada pela
           constante busca por aprender e aplicar novas tecnologias. Tenho
           experiência na construção de sistemas, com foco em desenvolvimento web
-          e mobile, além de um interesse em game dev, utilizando tecnologias como React, JavaScript, TypeScript,
-          Java, Python, entre outras. Com o objetivo de me manter atualizada, estou
-          sempre explorando novos desafios e buscando melhorar minha capacidade
-          de criar experiências mais intuitivas e impactantes para os usuários.
+          e mobile, além de um interesse em outras áreas, utilizando tecnologias
+          como React, JavaScript, TypeScript, React Native, Java, SQL, entre
+          outras. Com o objetivo de me manter atualizada, estou sempre
+          explorando novos desafios e buscando melhorar minha capacidade de
+          criar experiências mais intuitivas e impactantes para os usuários.
           Vamos juntos criar experiências digitais que fazem a diferença?
         </AboutText>
         <SocialLinks aria-label="Links sociais">
