@@ -8,31 +8,12 @@ export const AboutSection = styled.section`
   padding: 60px 40px;
   text-align: left;
   position: relative;
+
   background-color: ${({ theme }) => theme.background};
-  background: radial-gradient(
-      circle at 10% 10%,
-      ${({ theme }) => theme.gradient1},
-      transparent 30%
-    ),
-    radial-gradient(
-      circle at 90% 90%,
-      ${({ theme }) => theme.gradient2},
-      transparent 30%
-    ),
-    linear-gradient(
-        45deg,
-        ${({ theme }) => theme.gradient3} 15%,
-        transparent 15%
-      )
-      0 100%,
-    linear-gradient(
-        -45deg,
-        ${({ theme }) => theme.gradient4} 15%,
-        transparent 15%
-      )
-      100% 0;
-  transition: background-color 0.3s ease;
-  
+  color: ${({ theme }) => theme.text};
+
+  transition: background-color 0.3s ease, color 0.3s ease;
+
   @media (max-width: 768px) {
     flex-direction: column;
     margin-top: 30px;
@@ -43,11 +24,11 @@ export const AboutSection = styled.section`
 
 export const AboutTitle = styled.h1`
   font-size: 2.5rem;
-  color: ${({ theme }) => theme.isDarkTheme ? "#fff" : "#333"}; 
+  color: ${({ theme }) => (theme.isDark ? "#fff" : "#000")};
   margin-bottom: 20px;
   font-weight: 600;
   transition: color 0.3s ease;
-  
+
   @media (max-width: 768px) {
     font-size: 2rem;
     margin-bottom: 15px;
@@ -56,14 +37,14 @@ export const AboutTitle = styled.h1`
 
 export const AboutText = styled.p`
   font-size: 1rem;
-  color: ${({ theme }) => theme.isDarkTheme ? "#ddd" : "#333"};
+  color: ${({ theme }) => (theme.isDark ? "#ddd" : "#000")};
   margin-bottom: 20px;
   margin-top: 50px;
   max-width: 650px;
   text-align: justify;
   line-height: 1.6;
   transition: color 0.3s ease;
-  
+
   @media (max-width: 768px) {
     max-width: 100%;
     font-size: 1.1rem;
@@ -75,14 +56,17 @@ export const SocialLinks = styled.div`
   gap: 20px;
   justify-content: center;
   margin-top: 40px;
+  flex-wrap: wrap;
 `;
 
 export const SocialLink = styled.a`
   display: inline-block;
   font-size: 1rem;
-  color: ${({ theme }) => theme.isDarkTheme ? "#fff" : "#000"};
-  background: ${({ theme }) => 
-    theme.isDarkTheme ? "#444" : "linear-gradient(90deg, #ff416c, #ff4b2b)"};
+  color: #fff;
+  background: ${({ theme }) =>
+    theme.isDark
+      ? "#000"
+      : `linear-gradient(90deg, ${theme.primaryColor}, ${theme.secondaryColor})`};
   padding: 12px 24px;
   text-transform: uppercase;
   font-weight: bold;
@@ -94,21 +78,23 @@ export const SocialLink = styled.a`
   border-radius: 5px;
 
   &:hover {
-    background: ${({ theme }) =>
-      theme.isDarkTheme ? "#555" : "linear-gradient(90deg, #ff416c, #ff4b2b)"};
-    color: ${({ theme }) => (theme.isDarkTheme ? "#000" : "#fff")};
-    transform: translateY(-3px);
+    transform: translateY(-1px);
+    filter: brightness(1.1);
     box-shadow: ${({ theme }) =>
-      theme.isDarkTheme
-        ? "0 5px 15px rgba(255, 255, 255, 0.4)"
+      theme.isDark
+        ? "0 5px 15px rgba(255, 255, 255, 0.2)"
         : "0 5px 15px rgba(255, 75, 43, 0.4)"};
   }
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgba(255, 75, 43, 0.6);
+    box-shadow: ${({ theme }) =>
+      theme.isDark
+        ? "0 0 0 3px rgba(255, 255, 255, 0.4)"
+        : "0 0 0 3px rgba(255, 75, 43, 0.6)"};
   }
 `;
+
 
 export const Image = styled.img`
   width: 250px;
@@ -116,7 +102,7 @@ export const Image = styled.img`
   border-radius: 50%;
   margin-top: 20px;
   object-fit: cover;
-  display: block; 
+  display: block;
   margin-left: auto;
   margin-right: auto;
   transition: all 0.3s ease;

@@ -3,6 +3,9 @@ import styled from "styled-components";
 export const TechContainer = styled.section`
   padding: 40px;
   text-align: left;
+  background-color: ${({ theme }) => theme.background};
+  transition: background-color 0.3s ease;
+
   @media (max-width: 768px) {
     padding: 20px;
     margin-top: 30px;
@@ -15,6 +18,7 @@ export const TechTitle = styled.h1`
   color: ${({ theme }) => theme.text};
   margin-bottom: 20px;
   font-weight: 600;
+
   @media (max-width: 768px) {
     font-size: 2rem;
   }
@@ -26,6 +30,7 @@ export const TechList = styled.div`
   justify-content: center;
   gap: 20px;
   margin-top: 50px;
+
   @media (max-width: 768px) {
     gap: 15px;
     justify-content: center;
@@ -36,6 +41,7 @@ export const TechItem = styled.div`
   text-align: center;
   max-width: 180px;
   padding: 10px;
+  color: ${({ theme }) => theme.text};
 `;
 
 export const TechImage = styled.img`
@@ -53,6 +59,6 @@ export const TechLink = styled.a`
   transition: color 0.3s ease;
 
   &:hover {
-    color: ${({ theme }) => theme.isDarkTheme ? "#fff" : "#000"};
+    color: ${({ theme }) => (theme.isDark ? "#fff" : "#000")};
   }
 `;

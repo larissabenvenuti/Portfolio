@@ -8,19 +8,23 @@ export const HeaderContainer = styled.header`
   width: 100%;
   height: 60px;
   padding: 1rem;
-  background-color: ${({ theme }) => (theme.isDark ? "#000000" : "#ffffff")};
+  background-color: ${({ theme }) => theme.background};
+  color: ${({ theme }) => theme.text};
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: ${({ theme }) =>
+    theme.isDark
+      ? "0 1px 4px rgba(255, 255, 255, 0.05)"
+      : "0 1px 4px rgba(0, 0, 0, 0.1)"};
   z-index: 999;
+  transition: background-color 0.3s ease, color 0.3s ease;
 `;
 
 export const Nav = styled.nav`
   display: flex;
   align-items: center;
   margin-right: auto;
-  background-color: ${({ theme }) => (theme.isDark ? "#000000" : "#ffffff")};
 `;
 
 export const Menu = styled.ul`
@@ -29,7 +33,6 @@ export const Menu = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0;
-  background-color: ${({ theme }) => (theme.isDark ? "#000000" : "#ffffff")};
 
   &.mobile {
     position: absolute;
@@ -37,11 +40,14 @@ export const Menu = styled.ul`
     left: 0;
     width: 100%;
     flex-direction: column;
-    background-color: ${({ theme }) => (theme.isDark ? "#000000" : "#ffffff")};
     padding: 1rem;
     gap: 1rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     display: none;
+    background-color: ${({ theme }) => theme.background};
+    box-shadow: ${({ theme }) =>
+      theme.isDark
+        ? `0 2px 4px ${theme.shadowLight}`
+        : `0 2px 4px ${theme.shadowDark}`};
   }
 
   &.mobile.open {
@@ -52,29 +58,27 @@ export const Menu = styled.ul`
 export const MenuItem = styled.li`
   padding: 0.5rem;
   transition: transform 0.3s ease;
-  background-color: ${({ theme }) => (theme.isDark ? "#000000" : "#ffffff")};
 
   .mobile & {
     width: 100%;
     text-align: center;
+
     &:hover {
-      background-color: ${({ theme }) => (theme.isDark ? "#1a1a1a" : "#f0f0f0")};
+      background-color: ${({ theme }) =>
+        theme.isDark ? theme.hoverDark : theme.hoverLight};
     }
   }
 `;
 
 export const MenuLink = styled.a`
   font-size: 1.2rem;
-  color: ${({ theme }) => (theme.isDark ? "#ffffff" : "#000000")};
+  color: ${({ theme }) => theme.text};
   text-decoration: none;
   font-weight: 500;
-  transition: color 0.3s ease;
+  transition: opacity 0.3s ease;
 
   &:hover {
-    background: linear-gradient(90deg, #ff416c, #ff4b2b);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    opacity: 0.8;
   }
 `;
 
@@ -83,12 +87,12 @@ export const ThemeToggle = styled.button`
   border: none;
   padding: 0.5rem;
   cursor: pointer;
-  transition: transform 0.3s ease;
-  color: ${({ theme }) => (theme.isDark ? "#ffffff" : "#000000")};
+  color: ${({ theme }) => theme.text};
   position: absolute;
   right: 1rem;
   top: 50%;
   transform: translateY(-50%);
+  transition: transform 0.3s ease, color 0.3s ease;
 
   &:hover {
     transform: translateY(-50%) scale(1.1);
@@ -96,11 +100,11 @@ export const ThemeToggle = styled.button`
 `;
 
 export const MobileMenu = styled.div`
-  min-width: 100%;
+  width: 100%;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  background-color: ${({ theme }) => (theme.isDark ? "#000000" : "#ffffff")};
+  background-color: ${({ theme }) => theme.background};
 `;
 
 export const MobileMenuButton = styled.button`
@@ -108,6 +112,11 @@ export const MobileMenuButton = styled.button`
   border: none;
   cursor: pointer;
   font-size: 1.5rem;
-  color: ${({ theme }) => (theme.isDark ? "#ffffff" : "#000000")};
+  color: ${({ theme }) => theme.text};
   padding: 0.5rem;
+  transition: color 0.3s ease;
+
+  &:hover {
+    opacity: 0.8;
+  }
 `;

@@ -3,11 +3,12 @@ import styled from "styled-components";
 export const Container = styled.div`
   min-height: 100vh;
   width: 100%;
-  background-color: ${(props) => props.theme.background};
-  color: ${(props) => props.theme.text};
-  font-family: Arial, sans-serif;
-  box-sizing: border-box;
+  background-color: ${({ theme }) => (theme.isDark ? theme.background : theme.background)};
+  color: ${({ theme }) => theme.text};
+  font-family: 'Arial', sans-serif;
   font-size: 16px;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease, color 0.3s ease;
 
   @media (max-width: 768px) {
     font-size: 14px;

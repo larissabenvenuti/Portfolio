@@ -14,35 +14,36 @@ export const About = () => {
   const { isDarkTheme } = useTheme();
 
   return (
-    <AboutSection
-      id="sobre"
-      aria-labelledby="aboutTitle"
-      theme={{ isDarkTheme }}
-    >
+    <AboutSection id="sobre" aria-labelledby="aboutTitle">
       <div>
-        <AboutTitle theme={{ isDarkTheme }}>Sobre</AboutTitle>
-        <AboutText theme={{ isDarkTheme }}>
-          Olá, sou Larissa Benvenuti! Nascida e criada no interior do Rio de
-          Janeiro, sempre fui fascinada por tecnologia e suas infinitas
-          possibilidades. Com uma formação sólida em desenvolvimento full-stack
-          e atualmente cursando Sistemas de Computação na Universidade Federal
-          Fluminense, minha jornada no mundo da programação é marcada pela
-          constante busca por aprender e aplicar novas tecnologias. Tenho
-          experiência na construção de sistemas, com foco em desenvolvimento web
-          e mobile, além de um interesse em outras áreas, utilizando tecnologias
-          como React, JavaScript, TypeScript, React Native, Java, SQL, entre
-          outras. Com o objetivo de me manter atualizada, estou sempre
-          explorando novos desafios e buscando melhorar minha capacidade de
-          criar experiências mais intuitivas e impactantes para os usuários.
-          Vamos juntos criar experiências digitais que fazem a diferença?
+        <AboutTitle>Sobre</AboutTitle>
+        <AboutText>
+          Olá, sou Larissa Benvenuti! Nascida e criada no interior do Rio de Janeiro,
+          sempre fui apaixonada por tecnologia e suas infinitas possibilidades.
+          Com formação em desenvolvimento full-stack e atualmente cursando Sistemas
+          de Computação na Universidade Federal Fluminense, venho construindo minha
+          trajetória com foco em soluções web e mobile.
+
+          Utilizo tecnologias como React, React Native, Next.js, JavaScript,
+          TypeScript, Redux, Context API e APIs REST para desenvolver aplicações
+          modernas, responsivas e centradas na experiência do usuário. Tenho
+          experiência na construção de sistemas completos, do front-end ao back-end,
+          sempre com atenção à performance e à usabilidade.
+
+          Além disso, estou me especializando em desenvolvimento de jogos com Unreal
+          Engine e C++, expandindo minha atuação para áreas mais interativas e
+          imersivas da tecnologia.
+
+          Sou movida por desafios e aprendizado contínuo, sempre buscando criar
+          experiências digitais que realmente façam a diferença. Vamos juntos?
         </AboutText>
+
         <SocialLinks aria-label="Links sociais">
           <SocialLink
             href="https://www.linkedin.com/in/larissabenvenuti/"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Perfil no LinkedIn"
-            theme={{ isDarkTheme }}
           >
             LinkedIn
           </SocialLink>
@@ -51,12 +52,12 @@ export const About = () => {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Perfil no GitHub"
-            theme={{ isDarkTheme }}
           >
             GitHub
           </SocialLink>
         </SocialLinks>
       </div>
+
       <Image
         src={avatar}
         alt="Foto de Larissa Benvenuti, desenvolvedora"

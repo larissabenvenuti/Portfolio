@@ -1,4 +1,5 @@
 export const lightTheme = {
+  isDark: false,
   background: "#fff",
   text: "#000",
   gradient1: "rgba(209, 209, 209, 0.3)",
@@ -10,6 +11,7 @@ export const lightTheme = {
 };
 
 export const darkTheme = {
+  isDark: true,
   background: "#121212",
   text: "#fff",
   gradient1: "rgba(50, 50, 50, 0.3)",
