@@ -1,6 +1,6 @@
-import PinterestClone from "../../images/projects/ClonePinterest.jpg";
 import BrazilRestaurants from "../../images/projects/RestaurantesBrasil.png";
 import MindAlign from "../../images/projects/MindAlign.png";
+import GithubProfileSearcher from "../../images/projects/GithubProfileSearcher.png";
 
 export const projects = [
   {
@@ -12,13 +12,13 @@ export const projects = [
   {
     title: "MindAlign",
     image: MindAlign,
-    link: "https://your-planner.vercel.app/",
+    link: "https://mind-align.vercel.app/",
     reverse: false,
   },
   {
-    title: "Clone do Pinterest",
-    image: PinterestClone,
-    link: "https://github.com/larissabenvenuti/Clone-Pinterest",
+    title: "GitHub Profile Searcher",
+    image: GithubProfileSearcher,
+    link: "https://githubprofilesearcher.vercel.app/",
     reverse: true,
   },
 ];
