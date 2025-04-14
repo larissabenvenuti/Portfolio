@@ -1,3 +1,5 @@
+"use client";
+
 import { ThemeProvider } from '@/context/ThemeContext';
 import './globals.css';
 
