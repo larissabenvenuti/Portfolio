@@ -1,26 +1,126 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background-light: #ffffff;
+  --foreground-light: #171717;
+  --background-dark: #0a0a0a;
+  --foreground-dark: #ededed;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html[data-theme='dark'] {
+  --background: var(--background-dark);
+  --foreground: var(--foreground-dark);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html[data-theme='light'] {
+  --background: var(--background-light);
+  --foreground: var(--foreground-light);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  max-width: 100%;
+  height: 100%;
+}
+
+.container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+}
+
+@media (max-width: 767px) {
+  body {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  h1, h2 {
+    font-size: 1.5rem;
+  }
+
+  .grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  footer {
+    font-size: 12px;
+    padding: 10px;
+  }
+
+  .menu-mobile {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--background);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    z-index: 1000;
+  }
+
+  .menu-mobile li {
+    padding: 10px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  body {
+    font-size: 16px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+  }
+
+  body {
+    font-size: 18px;
+  }
+
+  footer {
+    font-size: 14px;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.transition-colors {
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
