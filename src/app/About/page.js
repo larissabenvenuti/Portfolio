@@ -1,5 +1,3 @@
-"use client"
-
 import React from "react";
 import Image from "next/image";
 import { useTheme } from "../../context/ThemeContext";
@@ -20,7 +18,7 @@ const About = () => {
   ];
 
   const buttonBaseClasses =
-    "flex items-center justify-center w-36 h-12 rounded-lg font-medium text-lg transition-all duration-300 border";
+    "flex items-center justify-center w-28 h-12 rounded-lg font-medium text-lg transition-all duration-300 border";
   const buttonClasses = isDark
     ? `${buttonBaseClasses} bg-gray-800 border-gray-700 text-white hover:bg-gradient-to-r hover:from-gray-700 hover:to-gray-600`
     : `${buttonBaseClasses} border-pink-300 text-black hover:bg-gradient-to-r hover:from-pink-300 hover:to-purple-400`;
@@ -29,9 +27,7 @@ const About = () => {
     <>
       <div className="text-center mb-6" id="sobre">
         <h1
-          className={`text-4xl font-extrabold ${
-            isDark ? "text-white" : "text-black"
-          } tracking-wide`}
+          className={`text-4xl font-extrabold ${isDark ? "text-white" : "text-black"} tracking-wide`}
         >
           Sobre
         </h1>
@@ -56,7 +52,7 @@ const About = () => {
             Utilizo tecnologias como React, Next.js, React Native, TypeScript e
             APIs REST para criar soluções modernas e eficientes.
           </p>
-          <div className="flex gap-4 mt-8">
+          <div className="flex gap-4 mt-8 flex-wrap justify-center">
             {socialLinks.map(({ href, label }) => (
               <Link
                 key={label}
@@ -91,7 +87,9 @@ const About = () => {
             <Image
               src="/images/avatar.jpg"
               alt="Foto de Larissa Benvenuti, desenvolvedora front-end"
-              fill
+              layout="responsive"
+              width={256}
+              height={256}
               className="object-cover"
               priority
             />

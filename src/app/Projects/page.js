@@ -10,7 +10,7 @@ const projects = [
     description: "Portfolio pessoal com projetos e informações profissionais",
     image: "/images/projects/GabrielSanchesPortfolio.png",
     link: "https://ezoyeahhh.vercel.app/",
-    github: "https://github.com/yourusername/portfolio",
+    github: "https://github.com/larissabenvenuti/Portfolio-GabrielSanches",
     tags: ["React", "Styled-components", "Next.js", "JavaScript"],
   },
   {
@@ -19,15 +19,15 @@ const projects = [
       "Plataforma para descobrir os melhores restaurantes brasileiros",
     image: "/images/projects/RestaurantesBrasil.png",
     link: "https://restaurantes-brasil.vercel.app/",
-    github: "https://github.com/yourusername/restaurantes-brasil",
-    tags: ["React", "Next.js", "Styled-components", "JavaScript"],
+    github: "https://github.com/larissabenvenuti/Site-Restaurantes",
+    tags: ["React", "Next.js", "TailwindCSS", "JavaScript"],
   },
   {
     title: "MindAlign",
     description: "Aplicativo para organização pessoal e produtividade",
     image: "/images/projects/MindAlign.png",
     link: "https://mind-align.vercel.app/",
-    github: "https://github.com/yourusername/mind-align",
+    github: "https://github.com/larissabenvenuti/MindAlign",
     tags: ["React", "Styled-components", "JavaScript"],
   },
   {
@@ -35,7 +35,7 @@ const projects = [
     description: "Ferramenta para buscar e visualizar perfis do GitHub",
     image: "/images/projects/GithubProfileSearcher.png",
     link: "https://githubprofilesearcher.vercel.app/",
-    github: "https://github.com/yourusername/github-profile-searcher",
+    github: "https://github.com/larissabenvenuti/Github-Profile-Searcher",
     tags: ["React", "Styled-Components", "Javascript"],
   },
 ];
