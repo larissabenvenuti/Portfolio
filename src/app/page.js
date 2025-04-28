@@ -13,9 +13,9 @@ export default function Page() {
     <main className="min-h-screen w-full bg-background-light dark:bg-background-dark text-text-dark dark:text-text-light transition-colors duration-300">
       <Header />
       <Hero />
-      <Projects />
-      <Skills />
       <About />
+      <Skills />
+      <Projects />
       <Footer />
     </main>
   );

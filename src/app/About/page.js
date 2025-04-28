@@ -1,104 +1,185 @@
-"use client"
+"use client";
 
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { useTheme } from "../../context/ThemeContext";
 import Link from "next/link";
+import aboutImage from "../../../public/images/avatar.jpg";
+import { motion } from "framer-motion";
 
 const About = () => {
-  const { isDark } = useTheme();
+  const { isDark, colors } = useTheme();
+  const [inView, setInView] = useState(false);
+  const aboutRef = useRef(null);
 
   const socialLinks = [
-    {
-      href: "https://www.linkedin.com/in/larissabenvenuti/",
-      label: "LinkedIn",
-    },
-    {
-      href: "https://github.com/larissabenvenuti",
-      label: "GitHub",
-    },
+    { href: "https://www.linkedin.com/in/larissabenvenuti/", label: "LinkedIn" },
+    { href: "https://github.com/larissabenvenuti", label: "GitHub" },
   ];
 
   const buttonBaseClasses =
-    "flex items-center justify-center w-28 h-12 rounded-lg font-medium text-lg transition-all duration-300 border";
-  const buttonClasses = isDark
-    ? `${buttonBaseClasses} bg-gray-800 border-gray-700 text-white hover:bg-gradient-to-r hover:from-gray-700 hover:to-gray-600`
-    : `${buttonBaseClasses} border-pink-300 text-black hover:bg-gradient-to-r hover:from-pink-300 hover:to-purple-400`;
+    "flex items-center justify-center min-w-[200px] h-12 rounded-full font-semibold text-md transition-all duration-300 px-6 shadow-md";
+
+  const buttonStyle = {
+    backgroundColor: colors.buttonFrom,
+    color: isDark ? "#ffffff" : "#000000",
+    backgroundImage: `linear-gradient(to right, ${colors.buttonFrom}, ${colors.buttonTo})`,
+    backgroundSize: "200% auto",
+    backgroundPosition: "left center",
+    transition: "background-position 0.4s ease, color 0.4s ease",
+  };
+
+  const buttonHoverStyle = {
+    backgroundPosition: "right center",
+  };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (aboutRef.current) {
+      observer.observe(aboutRef.current);
+    }
+
+    return () => {
+      if (aboutRef.current) {
+        observer.unobserve(aboutRef.current);
+      }
+    };
+  }, []);
 
   return (
-    <>
-      <div className="text-center mb-6" id="sobre">
-        <h1
-          className={`text-4xl font-extrabold ${isDark ? "text-white" : "text-black"} tracking-wide`}
+    <section
+      className="min-h-screen flex items-center justify-center px-6 md:px-16 py-24 transition-colors duration-500"
+      style={{ backgroundColor: colors.background, color: colors.text }}
+      id="sobre"
+      ref={aboutRef}
+    >
+      <div className="max-w-7xl w-full flex flex-col md:flex-row items-center justify-center gap-12 md:gap-20">
+        
+        <div
+          className="relative w-36 h-48 md:w-44 md:h-60 flex-shrink-0 border-4 rounded-xl overflow-hidden shadow-lg"
+          style={{
+            borderColor: isDark ? colors.primary : colors.background,
+          }}
         >
-          Sobre
-        </h1>
-      </div>
+          <Image
+            src={aboutImage}
+            alt="Larissa Benvenuti, Desenvolvedora Front-end"
+            layout="fill"
+            objectFit="cover"
+            priority
+          />
+        </div>
 
-      <section
-        className={`py-12 px-6 md:px-16 flex flex-col md:flex-row-reverse items-center justify-between gap-8 rounded-xl shadow-lg transition-colors duration-500`}
-      >
-        <div className="flex-1 max-w-2xl space-y-4">
-          <p className="text-lg leading-relaxed text-justify">
-            Olá, sou{" "}
-            <strong className="font-semibold">Larissa Benvenuti</strong>,
-            nascida no interior do Rio de Janeiro e apaixonada por tecnologia e
-            suas infinitas possibilidades.
+        <div className="flex-1 flex flex-col items-center justify-center space-y-6 text-justify md:text-left">
+          <h1
+            className="text-4xl md:text-5xl font-extrabold leading-tight"
+            style={{ color: colors.primary, fontFamily: "'Simonetta', serif" }}
+          >
+            Sobre:
+          </h1>
+
+          <p
+            className="text-lg leading-relaxed font-medium"
+            style={{ fontFamily: "'Nunito', sans-serif" }}
+          >
+            Olá! Sou a Larissa - Desenvolvedora apaixonada por tecnologia e inovação digital! Atualmente faço faculdade de <strong>Sistemas de
+            Computação</strong> na <strong>Universidade Federal Fluminense</strong>.
           </p>
-          <p className="text-lg leading-relaxed text-justify">
-            Com formação full-stack e atualmente cursando Sistemas de Computação
-            na UFF, desenvolvo aplicações web e mobile com foco em performance e
-            experiência do usuário.
+
+          <p
+            className="text-lg leading-relaxed font-medium"
+            style={{ fontFamily: "'Nunito', sans-serif" }}
+          >
+            Crio aplicações modernas e eficientes utilizando <strong>React</strong>,{" "}
+            <strong>Next.js</strong> e <strong>TailwindCSS</strong>, sempre focada
+            em entregar a melhor experiência para os usuários.
           </p>
-          <p className="text-lg leading-relaxed text-justify">
-            Utilizo tecnologias como React, Next.js, React Native, TypeScript e
-            APIs REST para criar soluções modernas e eficientes.
+
+          <p
+            className="text-lg leading-relaxed font-medium"
+            style={{ fontFamily: "'Nunito', sans-serif" }}
+          >
+            Busco constantemente evolução pessoal e profissional.
           </p>
-          <div className="flex gap-4 mt-8 flex-wrap justify-center">
-            {socialLinks.map(({ href, label }) => (
-              <Link
+
+          <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
+            {socialLinks.map(({ href, label }, index) => (
+              <motion.div
                 key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={buttonClasses}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: inView ? 1 : 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                {label}
-              </Link>
+                <Link
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={buttonBaseClasses}
+                  style={buttonStyle}
+                  onMouseEnter={(e) =>
+                    Object.assign(e.currentTarget.style, buttonHoverStyle)
+                  }
+                  onMouseLeave={(e) =>
+                    Object.assign(e.currentTarget.style, { backgroundPosition: "left center" })
+                  }
+                >
+                  {label}
+                </Link>
+              </motion.div>
             ))}
 
-            <a
-              href="/docs/CV_Larissa_Benvenuti.pdf"
-              download="Currículo_Larissa_Benvenuti"
-              className={buttonClasses}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: inView ? 1 : 0 }}
+              transition={{ duration: 0.5, delay: socialLinks.length * 0.1 }}
             >
-              Currículo
-            </a>
+              <a
+                href="/docs/CV_Larissa_Benvenuti.pdf"
+                download="Currículo_Larissa_Benvenuti"
+                className={buttonBaseClasses}
+                style={buttonStyle}
+                onMouseEnter={(e) =>
+                  Object.assign(e.currentTarget.style, buttonHoverStyle)
+                }
+                onMouseLeave={(e) =>
+                  Object.assign(e.currentTarget.style, { backgroundPosition: "left center" })
+                }
+              >
+                Currículo
+              </a>
+            </motion.div>
 
-            <a
-              href="mailto:larissabenvenutia@gmail.com"
-              className={buttonClasses}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: inView ? 1 : 0 }}
+              transition={{ duration: 0.5, delay: (socialLinks.length + 1) * 0.1 }}
             >
-              E-mail
-            </a>
+              <a
+                href="mailto:larissabenvenutia@gmail.com"
+                className={buttonBaseClasses}
+                style={buttonStyle}
+                onMouseEnter={(e) =>
+                  Object.assign(e.currentTarget.style, buttonHoverStyle)
+                }
+                onMouseLeave={(e) =>
+                  Object.assign(e.currentTarget.style, { backgroundPosition: "left center" })
+                }
+              >
+                E-mail
+              </a>
+            </motion.div>
           </div>
         </div>
-
-        <div className="flex-1 flex justify-center md:justify-center relative">
-          <div className="w-40 h-40 md:w-64 md:h-64 rounded-full overflow-hidden relative">
-            <Image
-              src="/images/avatar.jpg"
-              alt="Foto de Larissa Benvenuti, desenvolvedora front-end"
-              layout="responsive"
-              width={256}
-              height={256}
-              className="object-cover"
-              priority
-            />
-          </div>
-        </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 };
 

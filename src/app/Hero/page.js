@@ -1,79 +1,133 @@
-"use client"
+"use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useTheme } from "../../context/ThemeContext";
+import { Typewriter } from "react-simple-typewriter";
+import { motion } from "framer-motion";
 
-export const Hero = () => {
-  const { isDark } = useTheme();
-  const [isLoaded, setIsLoaded] = useState(false);
+const Hero = () => {
+  const { isDark, colors } = useTheme();
+  const [showSecondText, setShowSecondText] = useState(false);
 
   useEffect(() => {
-    setIsLoaded(true);
+    const timeout = setTimeout(() => {
+      setShowSecondText(true);
+    }, 2800);
+    return () => clearTimeout(timeout);
   }, []);
+
+  const buttonBaseClasses =
+    "flex items-center justify-center min-w-[200px] h-12 rounded-full font-semibold text-md transition-all duration-300 px-6 shadow-md";
+
+  const buttonStyle = {
+    backgroundColor: colors.buttonFrom,
+    color: isDark ? "#ffffff" : "#000000",
+    backgroundImage: `linear-gradient(to right, ${colors.buttonFrom}, ${colors.buttonTo})`,
+    backgroundSize: "200% auto",
+    backgroundPosition: "left center",
+    transition: "background-position 0.4s ease, color 0.4s ease",
+  };
+
+  const buttonHoverStyle = {
+    backgroundPosition: "right center",
+  };
 
   return (
     <section
       id="home"
-      aria-labelledby="heroTitle"
-      className={`relative flex h-screen flex-col items-center justify-center overflow-hidden transition-all duration-500`}
-      style={{
-        backgroundColor: isDark ? "var(--background-dark)" : "var(--background-light)",
-        color: isDark ? "var(--foreground-dark)" : "var(--foreground-light)"
-      }}
+      className="relative flex flex-col items-center justify-center min-h-screen px-8 md:px-20 py-16 transition-colors duration-500"
+      style={{ backgroundColor: colors.background }}
     >
-      <div className="absolute inset-0 overflow-hidden">
-        <div
-          className={`absolute top-10 left-10 w-12 h-12 rounded-full ${
-            isDark ? "bg-gradient-to-r from-gray-700 to-gray-600" : "bg-gradient-to-r from-pink-300 to-purple-400"
-          } opacity-30 animate-pulse transform transition-all duration-500`}
-        />
-        <div
-          className={`absolute top-1/4 left-1/3 w-10 h-10 rounded-full ${
-            isDark ? "bg-gradient-to-r from-gray-700 to-gray-600" : "bg-gradient-to-r from-pink-300 to-purple-400"
-          } opacity-40 animate-pulse delay-150 transform transition-all duration-500`}
-        />
-        <div
-          className={`absolute top-1/2 left-2/3 w-14 h-14 rounded-full ${
-            isDark ? "bg-gradient-to-r from-gray-700 to-gray-600" : "bg-gradient-to-r from-pink-300 to-purple-400"
-          } opacity-50 animate-pulse delay-300 transform transition-all duration-500`}
-        />
-        <div
-          className={`absolute top-3/4 left-1/4 w-16 h-16 rounded-full ${
-            isDark ? "bg-gradient-to-r from-gray-700 to-gray-600" : "bg-gradient-to-r from-pink-300 to-purple-400"
-          } opacity-40 animate-pulse delay-450 transform transition-all duration-500`}
-        />
-        <div
-          className={`absolute top-3/4 left-3/4 w-8 h-8 rounded-full ${
-            isDark ? "bg-gradient-to-r from-gray-700 to-gray-600" : "bg-gradient-to-r from-pink-300 to-purple-400"
-          } opacity-30 animate-pulse delay-600 transform transition-all duration-500`}
-        />
-        <div
-          className={`absolute top-1/3 left-1/2 w-12 h-12 rounded-full ${
-            isDark ? "bg-gradient-to-r from-gray-700 to-gray-600" : "bg-gradient-to-r from-pink-300 to-purple-400"
-          } opacity-35 animate-pulse delay-750 transform transition-all duration-500`}
-        />
-      </div>
-
-      <div className="z-10 px-6 text-center">
+      <div className="flex-1 flex flex-col items-center justify-center text-center lg:text-left space-y-6 z-10">
         <h1
-          id="heroTitle"
-          aria-label="Título principal"
-          className={`mb-8 font-extrabold text-4xl md:text-5xl lg:text-6xl transition-all duration-500 transform hover:scale-105 tracking-wide`}
+          className="text-4xl md:text-5xl font-extrabold tracking-tight leading-tight"
           style={{
-            color: isDark ? "white" : "black", 
+            color: colors.text,
+            fontFamily: "'Simonetta', serif",
           }}
         >
-          Larissa Benvenuti
+          <Typewriter
+            words={["Olá, sou Larissa Benvenuti."]}
+            loop={1}
+            cursor
+            cursorStyle="|"
+            typeSpeed={70}
+            deleteSpeed={50}
+            delaySpeed={2000}
+          />
         </h1>
 
+        {showSecondText && (
+          <h2
+            className="text-2xl md:text-3xl font-semibold"
+            style={{
+              color: colors.accent,
+              fontFamily: "'Nunito', sans-serif",
+            }}
+          >
+            <Typewriter
+              words={["Desenvolvedora Web."]}
+              loop={1}
+              cursor
+              cursorStyle="|"
+              typeSpeed={70}
+              deleteSpeed={50}
+              delaySpeed={500}
+            />
+          </h2>
+        )}
+
         <p
-          className={`mx-auto max-w-3xl text-center text-lg md:text-xl lg:text-2xl leading-relaxed
-            ${isDark ? "text-gray-300" : "text-gray-800"}
-            ${isLoaded ? "animate-fadeInUp" : "opacity-0 translate-y-5"}`}
+          className="mt-4 text-lg max-w-xl leading-relaxed"
+          style={{
+            color: colors.textMuted,
+            fontFamily: "'Nunito', sans-serif",
+          }}
         >
-          Desenvolvedora apaixonada por criar experiências digitais únicas. 
-          Transformando ideias em soluções inovadoras com foco em resultados. 
+          Transformando sites em experiências digitais únicas para cada usuário.
         </p>
+
+        <div className="mt-8 flex flex-wrap gap-4 justify-center lg:justify-start">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <a
+              href="#projetos"
+              className={buttonBaseClasses}
+              style={buttonStyle}
+              onMouseEnter={(e) =>
+                Object.assign(e.currentTarget.style, buttonHoverStyle)
+              }
+              onMouseLeave={(e) =>
+                Object.assign(e.currentTarget.style, { backgroundPosition: "left center" })
+              }
+            >
+              Ver Projetos
+            </a>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            <a
+              href="#contato"
+              className={buttonBaseClasses}
+              style={buttonStyle}
+              onMouseEnter={(e) =>
+                Object.assign(e.currentTarget.style, buttonHoverStyle)
+              }
+              onMouseLeave={(e) =>
+                Object.assign(e.currentTarget.style, { backgroundPosition: "left center" })
+              }
+            >
+              Fale Comigo
+            </a>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
