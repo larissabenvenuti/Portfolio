@@ -33,14 +33,14 @@ export const Header = () => {
   ];
 
   return (
-    <header className="w-full flex items-center justify-between px-8 py-2 shadow-md fixed top-0 left-0 z-50 transition-all duration-300"
+    <header className="w-full flex items-center justify-between px-8 py-0 shadow-md fixed top-0 left-0 z-50 transition-all duration-300"
       style={{ backgroundColor: isDark ? "#000" : "#fff" }}>
 
       <div className="flex items-center">
         <img
-          src={isDark ? "/images/logo/LB_png_dark.png" : "/images/logo/LB_png.png"}
+          src={isDark ? "/images/logo/LB_Logo_Dark_png.png" : "/images/logo/LB_Logo_png.png"}
           alt="Logo"
-          className="h-10 w-10 md:h-20 transition-all duration-300"
+          className="h-20 w-20 md:h-20 transition-all duration-300"
         />
       </div>
 
