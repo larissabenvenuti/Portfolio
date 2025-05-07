@@ -56,15 +56,15 @@ const About = () => {
 
   return (
     <section
-      className="min-h-screen flex items-center justify-center px-6 md:px-16 py-24 transition-colors duration-500"
+      className="min-h-screen flex items-center justify-center"
       style={{ backgroundColor: colors.background, color: colors.text }}
       id="sobre"
       ref={aboutRef}
     >
-      <div className="max-w-7xl w-full flex flex-col md:flex-row items-center justify-center gap-12 md:gap-20">
+      <div className="max-w-6xl w-full flex flex-col md:flex-row items-center justify-center gap-12 md:gap-20">
         
         <div
-          className="relative w-36 h-48 md:w-44 md:h-60 flex-shrink-0 border-4 rounded-xl overflow-hidden shadow-lg"
+          className="relative w-45 h-45 md:w-55 md:h-55 flex-shrink-0 border-3 rounded-full overflow-hidden shadow-lg"
           style={{
             borderColor: isDark ? colors.primary : colors.background,
           }}
@@ -81,16 +81,16 @@ const About = () => {
         <div className="flex-1 flex flex-col items-center justify-center space-y-6 text-justify md:text-left">
           <h1
             className="text-4xl md:text-5xl font-extrabold leading-tight"
-            style={{ color: colors.primary, fontFamily: "'Simonetta', serif" }}
+            style={{ color: colors.primary, fontFamily: "'Nunito', sans-serif" }}
           >
             Sobre:
           </h1>
 
           <p
-            className="text-lg leading-relaxed font-medium"
+            className="text-lg font-medium"
             style={{ fontFamily: "'Nunito', sans-serif" }}
           >
-            Olá! Sou a Larissa - Desenvolvedora apaixonada por tecnologia e inovação digital! Atualmente faço faculdade de <strong>Sistemas de
+            Olá! Sou a Larissa - Desenvolvedora apaixonada por tecnologia e inovação! Atualmente faço faculdade de <strong>Sistemas de
             Computação</strong> na <strong>Universidade Federal Fluminense</strong>.
           </p>
 
@@ -99,15 +99,8 @@ const About = () => {
             style={{ fontFamily: "'Nunito', sans-serif" }}
           >
             Crio aplicações modernas e eficientes utilizando <strong>React</strong>,{" "}
-            <strong>Next.js</strong> e <strong>TailwindCSS</strong>, sempre focada
-            em entregar a melhor experiência para os usuários.
-          </p>
-
-          <p
-            className="text-lg leading-relaxed font-medium"
-            style={{ fontFamily: "'Nunito', sans-serif" }}
-          >
-            Busco constantemente evolução pessoal e profissional.
+            <strong>Next.js</strong>, <strong>Styled-components</strong> e <strong>TailwindCSS</strong>, sempre focada
+            em entregar a melhor experiência para os usuários e buscar evolução profissional.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">

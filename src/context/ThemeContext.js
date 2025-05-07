@@ -69,7 +69,7 @@ export const ThemeProvider = ({ children }) => {
     <>
       <Head>
         <link
-          href="https://fonts.googleapis.com/css2?family=Simonetta&family=Nunito:wght@300;400;600&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600&display=swap"
           rel="stylesheet"
         />
       </Head>

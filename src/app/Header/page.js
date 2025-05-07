@@ -29,7 +29,6 @@ export const Header = () => {
     { to: "sobre", label: "Sobre" },
     { to: "skills", label: "Skills" },
     { to: "projetos", label: "Projetos" },
-    { to: "servicos", label: "Serviços" },
   ];
 
   return (

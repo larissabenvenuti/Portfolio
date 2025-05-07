@@ -43,7 +43,7 @@ const Hero = () => {
           className="text-4xl md:text-5xl font-extrabold tracking-tight leading-tight"
           style={{
             color: colors.text,
-            fontFamily: "'Simonetta', serif",
+            fontFamily: "'Nunito', sans-serif",
           }}
         >
           <Typewriter
@@ -114,7 +114,7 @@ const Hero = () => {
             transition={{ duration: 0.5, delay: 0.3 }}
           >
             <a
-              href="#contato"
+              href="#sobre"
               className={buttonBaseClasses}
               style={buttonStyle}
               onMouseEnter={(e) =>

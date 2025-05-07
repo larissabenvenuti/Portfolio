@@ -44,10 +44,10 @@ export const Skills = () => {
   return (
     <section
       id="skills"
-      className="py-20 px-6 md:px-12 lg:px-24 transition-colors duration-500"
+      className="min-h-screen py-20 px-6 md:px-12 lg:px-24 transition-colors duration-500"
       ref={skillsRef}
       style={{
-        backgroundColor: colors.backgroundAlt,
+        backgroundColor: colors.background,
         color: colors.text,
       }}
     >
@@ -57,7 +57,7 @@ export const Skills = () => {
             className="text-4xl md:text-5xl font-extrabold leading-tight mb-6"
             style={{
               color: colors.primary,
-              fontFamily: "'Simonetta', serif",
+              fontFamily: "'Nunito', sans-serif",
             }}
           >
             Skills:
@@ -79,7 +79,8 @@ export const Skills = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="flex items-center justify-center p-6 rounded-2xl shadow-md border-2 transition-all duration-300 hover:scale-105"
               style={{
-                backgroundColor: isDark ? colors.background : "#ffffff",
+                backgroundColor: colors.background, 
+                color: colors.text,
                 borderColor: colors.primary,
                 boxShadow: isDark
                   ? "0 8px 16px rgba(0,0,0,0.4)"

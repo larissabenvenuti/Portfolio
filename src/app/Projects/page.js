@@ -12,7 +12,7 @@ const projects = [
     image: "/images/projects/GabrielSanchesPortfolio.png",
     link: "https://ezoyeahhh.vercel.app/",
     github: "https://github.com/larissabenvenuti/Portfolio-GabrielSanches",
-    tags: ["React", "Styled-components", "Next.js", "JavaScript"],
+    tags: ["Next.js", "Styled-components", "JavaScript"],
   },
   {
     title: "Restaurantes do Brasil",
@@ -21,7 +21,7 @@ const projects = [
     image: "/images/projects/RestaurantesBrasil.png",
     link: "https://restaurantes-brasil.vercel.app/",
     github: "https://github.com/larissabenvenuti/Site-Restaurantes",
-    tags: ["React", "Next.js", "TailwindCSS", "JavaScript"],
+    tags: ["Next.js", "TailwindCSS", "JavaScript"],
   },
   {
     title: "MindAlign",
@@ -91,14 +91,14 @@ const Projects = () => {
     <section
       ref={sectionRef}
       id="projetos"
-      className="relative py-20 px-6 md:px-12 lg:px-24 transition-colors duration-500"
+      className="min-h-screen relative py-20 px-6 md:px-12 lg:px-24 transition-colors duration-500"
       style={{ backgroundColor: colors.background, color: colors.text }}
     >
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center">
         <div className="text-center md:text-left flex-1 mb-12 md:mb-0">
           <h2
             className="text-5xl font-extrabold tracking-tight mb-6"
-            style={{ color: colors.primary, fontFamily: "'Simonetta', serif" }}
+            style={{ color: colors.primary, fontFamily: "'Nunito', serif" }}
           >
             Projetos: 
           </h2>
