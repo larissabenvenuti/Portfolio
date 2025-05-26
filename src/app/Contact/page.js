@@ -12,28 +12,30 @@ export default function Contact() {
   const {
     handleSubmit,
     register,
+    reset,
     formState: { errors },
   } = useForm();
 
   const onSubmit = async (data) => {
-    try {
-      const response = await fetch("http://localhost:5000/send-email", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
+  try {
+    const response = await fetch("/api/send-email", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
 
-      const result = await response.json();
-      if (result.success) {
-        alert("Email enviado com sucesso!");
-      } else {
-        alert("Falha ao enviar email.");
-      }
-    } catch (error) {
-      console.error("Erro ao enviar email:", error);
-      alert("Erro ao enviar email.");
+    const result = await response.json();
+    if (result.success) {
+      alert("Email enviado com sucesso!");
+      reset();
+    } else {
+      alert("Falha ao enviar email.");
     }
-  };
+  } catch (error) {
+    console.error("Erro ao enviar email:", error);
+    alert("Erro ao enviar email.");
+  }
+};
 
   const onError = (errors) => console.log(errors);
 
@@ -189,16 +191,16 @@ export default function Contact() {
           <button
             type="submit"
             className={`
-        group relative overflow-hidden
-        flex items-center justify-center gap-2
-        min-w-[120px] sm:min-w-[130px] h-11
-        rounded-full font-semibold text-sm
-        transition-all duration-300 px-3 sm:px-4
-        shadow-md hover:shadow-lg
-        transform hover:-translate-y-0.5
-        focus:outline-none focus:ring-2 focus:ring-offset-2
-        active:transform active:scale-95
-      `}
+              group relative overflow-hidden
+              flex items-center justify-center gap-2
+              min-w-[120px] sm:min-w-[130px] h-11
+              rounded-full font-semibold text-sm
+              transition-all duration-300 px-3 sm:px-4
+              shadow-md hover:shadow-lg
+              transform hover:-translate-y-0.5
+              focus:outline-none focus:ring-2 focus:ring-offset-2
+              active:transform active:scale-95
+            `}
             style={{
               backgroundColor: colors.buttonFrom,
               color: isDark ? colors.buttonDarkText : colors.buttonLightText,

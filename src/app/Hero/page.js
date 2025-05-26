@@ -105,7 +105,7 @@ const Hero = () => {
             transition={{ duration: 0.4, delay: 1.8 }}
           >
             <a
-              href="#sobre"
+              href="#contato"
               className={buttonBaseClasses}
               style={buttonStyle}
               onMouseEnter={(e) =>
