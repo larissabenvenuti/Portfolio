@@ -7,6 +7,7 @@ import Skills from "./Skills/page";
 import Projects from "./Projects/page";
 import Footer from "./Footer/page";
 import Hero from "./Hero/page";
+import Contact from "./Contact/page";
 
 export default function Page() {
   return (
@@ -16,6 +17,7 @@ export default function Page() {
       <About />
       <Skills />
       <Projects />
+      <Contact />
       <Footer />
     </main>
   );

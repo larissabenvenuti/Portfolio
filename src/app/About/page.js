@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 import { useTheme } from "../../context/ThemeContext";
 import Link from "next/link";
 import aboutImage from "../../../public/images/avatar.jpg";
 import { motion } from "framer-motion";
+import { Linkedin, Github, Mail, Download, ExternalLink } from "lucide-react";
 
 const About = () => {
   const { isDark, colors } = useTheme();
@@ -13,164 +14,177 @@ const About = () => {
   const aboutRef = useRef(null);
 
   const socialLinks = [
-    { href: "https://www.linkedin.com/in/larissabenvenuti/", label: "LinkedIn" },
-    { href: "https://github.com/larissabenvenuti", label: "GitHub" },
+    {
+      href: "https://www.linkedin.com/in/larissabenvenuti/",
+      label: "LinkedIn",
+      icon: Linkedin,
+      external: true,
+      useLink: true,
+    },
+    {
+      href: "https://github.com/larissabenvenuti",
+      label: "GitHub",
+      icon: Github,
+      external: true,
+      useLink: true,
+    },
+    {
+      href: "/docs/CV_Larissa_Benvenuti.pdf",
+      label: "Currículo",
+      icon: Download,
+      download: true,
+      useLink: false, 
+    },
+    {
+      href: "mailto:larissabenvenutia@gmail.com",
+      label: "E-mail",
+      icon: Mail,
+      useLink: false, 
+    },
   ];
 
-  const buttonBaseClasses =
-    "flex items-center justify-center min-w-[200px] h-12 rounded-full font-semibold text-md transition-all duration-300 px-6 shadow-md";
+  const buttonBaseClasses = `
+    group relative overflow-hidden
+    flex items-center justify-center gap-2
+    min-w-[120px] sm:min-w-[130px] h-11
+    rounded-full font-semibold text-sm
+    transition-all duration-300 px-3 sm:px-4
+    shadow-md hover:shadow-lg
+    transform hover:-translate-y-0.5
+    focus:outline-none focus:ring-2 focus:ring-offset-2
+    active:transform active:scale-95
+  `
+    .replace(/\s+/g, " ")
+    .trim();
 
-  const buttonStyle = {
-    backgroundColor: colors.buttonFrom,
-    color: isDark ? "#ffffff" : "#000000",
-    backgroundImage: `linear-gradient(to right, ${colors.buttonFrom}, ${colors.buttonTo})`,
-    backgroundSize: "200% auto",
-    backgroundPosition: "left center",
-    transition: "background-position 0.4s ease, color 0.4s ease",
-  };
-
-  const buttonHoverStyle = {
-    backgroundPosition: "right center",
-  };
+  const getButtonStyle = useCallback(
+    () => ({
+      backgroundColor: colors.buttonFrom,
+      color: isDark ? colors.buttonDarkText : colors.buttonLightText,
+      backgroundImage: `linear-gradient(135deg, ${colors.buttonFrom}, ${colors.buttonTo})`,
+    }),
+    [colors, isDark]
+  );
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setInView(true);
-        }
-      },
-      { threshold: 0.2 }
+      ([entry]) => setInView(entry.isIntersecting),
+      { threshold: 0.2, rootMargin: "50px 0px" }
     );
 
-    if (aboutRef.current) {
-      observer.observe(aboutRef.current);
-    }
+    const currentRef = aboutRef.current;
+    if (currentRef) observer.observe(currentRef);
 
     return () => {
-      if (aboutRef.current) {
-        observer.unobserve(aboutRef.current);
-      }
+      if (currentRef) observer.unobserve(currentRef);
     };
   }, []);
 
+  const buttonStyle = getButtonStyle();
+
   return (
     <section
-      className="min-h-screen flex items-center justify-center"
-      style={{ backgroundColor: colors.background, color: colors.text }}
       id="sobre"
       ref={aboutRef}
+      className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-16 sm:py-20"
+      style={{ backgroundColor: colors.background, color: colors.text }}
+      aria-label="Seção sobre Larissa Benvenuti"
     >
-      <div className="max-w-6xl w-full flex flex-col md:flex-row items-center justify-center gap-12 md:gap-20">
-        
-        <div
-          className="relative w-45 h-45 md:w-55 md:h-55 flex-shrink-0 border-3 rounded-full overflow-hidden shadow-lg"
-          style={{
-            borderColor: isDark ? colors.primary : colors.background,
-          }}
+      <div className="max-w-6xl w-full flex flex-col lg:flex-row items-center justify-center gap-8 sm:gap-12 lg:gap-20">
+        <motion.div
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={inView ? { scale: 1, opacity: 1 } : {}}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="w-36 h-36 sm:w-44 sm:h-44 md:w-56 md:h-56 flex-shrink-0 rounded-full overflow-hidden shadow-xl"
         >
           <Image
             src={aboutImage}
             alt="Larissa Benvenuti, Desenvolvedora Front-end"
-            layout="fill"
-            objectFit="cover"
+            width={224}
+            height={224}
+            className="w-full h-full object-cover"
             priority
+            placeholder="blur"
           />
-        </div>
+        </motion.div>
 
-        <div className="flex-1 flex flex-col items-center justify-center space-y-6 text-justify md:text-left">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="flex-1 flex flex-col items-center lg:items-start space-y-6 text-center lg:text-left max-w-2xl"
+        >
           <h1
-            className="text-4xl md:text-5xl font-extrabold leading-tight"
-            style={{ color: colors.primary, fontFamily: "'Nunito', sans-serif" }}
+            className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight"
+            style={{ color: colors.primary }}
           >
-            Sobre:
+            Sobre mim
           </h1>
 
-          <p
-            className="text-lg font-medium"
-            style={{ fontFamily: "'Nunito', sans-serif" }}
-          >
-            Olá! Sou a Larissa - Desenvolvedora apaixonada por tecnologia e inovação! Atualmente faço faculdade de <strong>Sistemas de
-            Computação</strong> na <strong>Universidade Federal Fluminense</strong>.
-          </p>
+          <div className="space-y-4" style={{ textAlign: "justify" }}>
+            <p className="text-base sm:text-lg font-medium leading-relaxed">
+              Olá! Sou a <strong>Larissa</strong> — Desenvolvedora apaixonada
+              por tecnologia e inovação! Atualmente faço faculdade de{" "}
+              <strong>Sistemas de Computação</strong> na Universidade Federal
+              Fluminense.
+            </p>
 
-          <p
-            className="text-lg leading-relaxed font-medium"
-            style={{ fontFamily: "'Nunito', sans-serif" }}
-          >
-            Crio aplicações modernas e eficientes utilizando <strong>React</strong>,{" "}
-            <strong>Next.js</strong>, <strong>Styled-components</strong> e <strong>TailwindCSS</strong>, sempre focada
-            em entregar a melhor experiência para os usuários e buscar evolução profissional.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
-            {socialLinks.map(({ href, label }, index) => (
-              <motion.div
-                key={label}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: inView ? 1 : 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <Link
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={buttonBaseClasses}
-                  style={buttonStyle}
-                  onMouseEnter={(e) =>
-                    Object.assign(e.currentTarget.style, buttonHoverStyle)
-                  }
-                  onMouseLeave={(e) =>
-                    Object.assign(e.currentTarget.style, { backgroundPosition: "left center" })
-                  }
-                >
-                  {label}
-                </Link>
-              </motion.div>
-            ))}
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: inView ? 1 : 0 }}
-              transition={{ duration: 0.5, delay: socialLinks.length * 0.1 }}
-            >
-              <a
-                href="/docs/CV_Larissa_Benvenuti.pdf"
-                download="Currículo_Larissa_Benvenuti"
-                className={buttonBaseClasses}
-                style={buttonStyle}
-                onMouseEnter={(e) =>
-                  Object.assign(e.currentTarget.style, buttonHoverStyle)
-                }
-                onMouseLeave={(e) =>
-                  Object.assign(e.currentTarget.style, { backgroundPosition: "left center" })
-                }
-              >
-                Currículo
-              </a>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: inView ? 1 : 0 }}
-              transition={{ duration: 0.5, delay: (socialLinks.length + 1) * 0.1 }}
-            >
-              <a
-                href="mailto:larissabenvenutia@gmail.com"
-                className={buttonBaseClasses}
-                style={buttonStyle}
-                onMouseEnter={(e) =>
-                  Object.assign(e.currentTarget.style, buttonHoverStyle)
-                }
-                onMouseLeave={(e) =>
-                  Object.assign(e.currentTarget.style, { backgroundPosition: "left center" })
-                }
-              >
-                E-mail
-              </a>
-            </motion.div>
+            <p className="text-base sm:text-lg leading-relaxed">
+              Crio aplicações web modernas e responsivas utilizando{" "}
+              <strong>React</strong>, <strong>Next.js</strong>,{" "}
+              <strong>Styled-components</strong> e <strong>TailwindCSS</strong>,
+              sempre focada em entregar a melhor experiência para os usuários.
+              Também atuo no back-end com <strong>Python</strong> e{" "}
+              <strong>Java</strong>.
+            </p>
           </div>
-        </div>
+
+          <div className="flex flex-wrap gap-3 sm:gap-4 pt-6 justify-center lg:justify-start">
+            {socialLinks.map((link) => {
+              const Icon = link.icon;
+              if (link.useLink) {
+                return (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    target={link.external ? "_blank" : undefined}
+                    rel={link.external ? "noopener noreferrer" : undefined}
+                    className={buttonBaseClasses}
+                    style={buttonStyle}
+                    aria-label={`${link.label} ${
+                      link.external ? "(abre em nova aba)" : ""
+                    }`}
+                  >
+                    <Icon size={16} className="flex-shrink-0" />
+                    <span className="truncate">{link.label}</span>
+                    {link.external && (
+                      <ExternalLink
+                        size={12}
+                        className="opacity-70 flex-shrink-0"
+                      />
+                    )}
+                  </Link>
+                );
+              } else {
+                return (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    download={link.download}
+                    className={buttonBaseClasses}
+                    style={buttonStyle}
+                    aria-label={link.label}
+                    target={link.external ? "_blank" : undefined}
+                    rel={link.external ? "noopener noreferrer" : undefined}
+                  >
+                    <Icon size={16} className="flex-shrink-0" />
+                    <span className="truncate">{link.label}</span>
+                  </a>
+                );
+              }
+            })}
+          </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -21,7 +21,7 @@ export const ThemeProvider = ({ children }) => {
         text: "#ffffff",
         buttonFrom: "#4a4a4a",
         buttonTo: "#2d2d2d",
-        buttonLightFrom: "#f0ecfc",
+        buttonLightFrom: "#ffffff",
         buttonLightTo: "#ffffff",
         buttonDarkText: "#ffffff",
         buttonDarkHover: "#333333",
@@ -35,7 +35,7 @@ export const ThemeProvider = ({ children }) => {
         text: "#000000",
         buttonFrom: "#f0ecfc",
         buttonTo: "#E87373",
-        buttonLightFrom: "#f0ecfc",
+        buttonLightFrom: "#ffffff",
         buttonLightTo: "#E87373",
         buttonDarkText: "#ffffff",
         buttonDarkHover: "#333333",
@@ -58,6 +58,8 @@ export const ThemeProvider = ({ children }) => {
       root.style.setProperty("--background-color", colors.background);
       root.style.setProperty("--text-color", colors.text);
       document.documentElement.setAttribute("data-theme", isDark ? "dark" : "light");
+
+      localStorage.setItem("theme", isDark ? "dark" : "light");
     }
   }, [isDark, isMounted]);
 

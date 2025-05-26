@@ -6,7 +6,7 @@ import { Link } from "react-scroll";
 import { Sun, Moon, X } from "lucide-react";
 
 export const Header = () => {
-  const { isDark, toggleTheme } = useTheme();
+  const { isDark, toggleTheme, colors } = useTheme();
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -29,15 +29,21 @@ export const Header = () => {
     { to: "sobre", label: "Sobre" },
     { to: "skills", label: "Skills" },
     { to: "projetos", label: "Projetos" },
+    { to: "contato", label: "Contato" },
   ];
 
   return (
-    <header className="w-full flex items-center justify-between px-8 py-0 shadow-md fixed top-0 left-0 z-50 transition-all duration-300"
-      style={{ backgroundColor: isDark ? "#000" : "#fff" }}>
-
+    <header
+      className="w-full flex items-center justify-between px-8 py-0 shadow-md fixed top-0 left-0 z-50 transition-all duration-300"
+      style={{ backgroundColor: colors.background, color: colors.text }}
+    >
       <div className="flex items-center">
         <img
-          src={isDark ? "/images/logo/LB_Logo_Dark_png.png" : "/images/logo/LB_Logo_png.png"}
+          src={
+            isDark
+              ? "/images/logo/LB_Logo_Dark_png.png"
+              : "/images/logo/LB_Logo_png.png"
+          }
           alt="Logo"
           className="h-20 w-20 md:h-20 transition-all duration-300"
         />
@@ -50,11 +56,15 @@ export const Header = () => {
               to={to}
               smooth
               duration={500}
-              className="hover:text-primaryLight cursor-pointer transition-colors"
+              className="cursor-pointer transition-colors no-underline"
+              style={{ color: colors.text, textDecoration: "none" }}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.color = colors.primary)
+              }
+              onMouseLeave={(e) => (e.currentTarget.style.color = colors.text)}
             >
               {label}
             </Link>
-            {to !== "servicos" && <div className="h-6 w-px bg-primaryLight" />}
           </React.Fragment>
         ))}
       </nav>
@@ -65,13 +75,15 @@ export const Header = () => {
           aria-label="Alternar tema"
           title={`Alternar para o tema ${isDark ? "claro" : "escuro"}`}
           className="text-xl p-2 transition-all hover:scale-110"
+          style={{ color: colors.text }}
         >
           {isDark ? <Moon size={24} /> : <Sun size={24} />}
         </button>
 
         <button
           onClick={toggleMobileMenu}
-          className="md:hidden p-2 rounded focus:outline-none focus:ring-2 focus:ring-primaryLight"
+          className="md:hidden p-2 rounded focus:outline-none focus:ring-2"
+          style={{ color: colors.primary }}
         >
           {isMobileMenuOpen ? (
             <X size={28} />
@@ -81,6 +93,7 @@ export const Header = () => {
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
+              style={{ color: colors.primary }}
             >
               <path
                 strokeLinecap="round"
@@ -94,8 +107,10 @@ export const Header = () => {
       </div>
 
       {isMobileMenuOpen && (
-        <div className="absolute top-full left-0 w-full shadow-lg flex flex-col items-center py-6 space-y-4 animate-slide-down z-40"
-          style={{ backgroundColor: isDark ? "#000" : "#fff" }}>
+        <div
+          className="absolute top-full left-0 w-full shadow-lg flex flex-col items-center py-6 space-y-4 animate-slide-down z-40"
+          style={{ backgroundColor: colors.background }}
+        >
           {menuLinks.map(({ to, label }) => (
             <Link
               key={to}
@@ -103,7 +118,12 @@ export const Header = () => {
               smooth
               duration={500}
               onClick={() => setMobileMenuOpen(false)}
-              className="text-lg hover:text-primaryLight cursor-pointer transition-colors"
+              className="text-lg cursor-pointer transition-colors"
+              style={{ color: colors.text }}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.color = colors.primary)
+              }
+              onMouseLeave={(e) => (e.currentTarget.style.color = colors.text)}
             >
               {label}
             </Link>
