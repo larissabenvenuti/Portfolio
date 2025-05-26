@@ -109,7 +109,7 @@ export default function Contact() {
             placeholder="Seu nome"
             style={{
               backgroundColor: colors.buttonLightFrom,
-              color: colors.text,
+              color: isDark ? "#000000" : colors.text, 
               borderColor: colors.primary,
             }}
             className="w-full rounded-md border px-3 py-2 shadow-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset sm:text-sm"
@@ -135,7 +135,7 @@ export default function Contact() {
             autoComplete="email"
             style={{
               backgroundColor: colors.buttonLightFrom,
-              color: colors.text,
+              color: isDark ? "#000000" : colors.text, 
               borderColor: colors.primary,
             }}
             className="w-full rounded-md border px-3 py-2 shadow-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset sm:text-sm"
@@ -158,7 +158,7 @@ export default function Contact() {
             autoComplete="tel"
             style={{
               backgroundColor: colors.buttonLightFrom,
-              color: colors.text,
+              color: isDark ? "#000000" : colors.text, 
               borderColor: colors.primary,
             }}
             className="w-full rounded-md border px-3 py-2 shadow-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset sm:text-sm"

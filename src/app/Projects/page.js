@@ -46,7 +46,18 @@ const Projects = () => {
   const prefersReducedMotion = useReducedMotion();
   const [current, setCurrent] = useState(0);
   const [activeProject, setActiveProject] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
   const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768); 
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const animationVariants = {
     hidden: {
@@ -82,7 +93,11 @@ const Projects = () => {
   }, []);
 
   const toggleDescription = (index) => {
-    setActiveProject(activeProject === index ? null : index);
+    if (isMobile) {
+      setActiveProject(activeProject === index ? null : index);
+    } else {
+      setActiveProject(activeProject === index ? null : index);
+    }
   };
 
   return (
@@ -197,45 +212,70 @@ const Projects = () => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                 >
-                  <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                  <p className="text-sm mb-4 max-w-xs">{project.description}</p>
-
-                  <div className="flex gap-4 mb-4">
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`${project.title} GitHub Repository`}
-                      className="hover:text-primary transition-colors"
-                    >
-                      <Github size={28} />
-                    </a>
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`${project.title} Live Demo`}
-                      className="hover:text-primary transition-colors"
-                    >
-                      <ExternalLink size={28} />
-                    </a>
-                  </div>
-
-                  <div className="flex flex-wrap gap-2 justify-center text-xs">
-                    {project.tags.map((tag, idx) => (
-                      <span
-                        key={idx}
-                        className="px-2 py-1 rounded-full border"
-                        style={{
-                          backgroundColor: colors.background,
-                          color: colors.text,
-                          borderColor: colors.primary,
-                        }}
+                  {isMobile ? (
+                    <div className="flex gap-4">
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`${project.title} GitHub Repository`}
+                        className="hover:text-primary transition-colors"
                       >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+                        <Github size={28} />
+                      </a>
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`${project.title} Live Demo`}
+                        className="hover:text-primary transition-colors"
+                      >
+                        <ExternalLink size={28} />
+                      </a>
+                    </div>
+                  ) : (
+                    <>
+                      <h3 className="text-xl font-bold mb-2">{project.title}</h3>
+                      <p className="text-sm mb-4 max-w-xs">{project.description}</p>
+
+                      <div className="flex gap-4 mb-4">
+                        <a
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`${project.title} GitHub Repository`}
+                          className="hover:text-primary transition-colors"
+                        >
+                          <Github size={28} />
+                        </a>
+                        <a
+                          href={project.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`${project.title} Live Demo`}
+                          className="hover:text-primary transition-colors"
+                        >
+                          <ExternalLink size={28} />
+                        </a>
+                      </div>
+
+                      <div className="flex flex-wrap gap-2 justify-center text-xs">
+                        {project.tags.map((tag, idx) => (
+                          <span
+                            key={idx}
+                            className="px-2 py-1 rounded-full border"
+                            style={{
+                              backgroundColor: colors.background,
+                              color: colors.text,
+                              borderColor: colors.primary,
+                            }}
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </>
+                  )}
                 </motion.div>
               )}
             </motion.div>
