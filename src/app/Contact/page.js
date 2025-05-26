@@ -17,25 +17,25 @@ export default function Contact() {
   } = useForm();
 
   const onSubmit = async (data) => {
-  try {
-    const response = await fetch("/api/send-email", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
+    try {
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
 
-    const result = await response.json();
-    if (result.success) {
-      alert("Email enviado com sucesso!");
-      reset();
-    } else {
-      alert("Falha ao enviar email.");
+      const result = await response.json();
+      if (result.success) {
+        alert("Email enviado com sucesso!");
+        reset();
+      } else {
+        alert("Falha ao enviar email.");
+      }
+    } catch (error) {
+      console.error("Erro ao enviar email:", error);
+      alert("Erro ao enviar email.");
     }
-  } catch (error) {
-    console.error("Erro ao enviar email:", error);
-    alert("Erro ao enviar email.");
-  }
-};
+  };
 
   const onError = (errors) => console.log(errors);
 
@@ -66,7 +66,7 @@ export default function Contact() {
     >
       <div className="max-w-xl w-full text-center mb-8 px-2">
         <h2
-          style={{ color: colors.primary }}
+          style={{ color: colors.text }}
           className="text-4xl sm:text-5xl font-extrabold mb-6 text-center"
         >
           Contate-me
@@ -92,7 +92,7 @@ export default function Contact() {
           <label
             className="block text-sm font-semibold mb-1"
             htmlFor="name"
-            style={{ color: colors.primary }}
+            style={{ color: colors.text }}
           >
             Nome
           </label>
@@ -123,7 +123,7 @@ export default function Contact() {
           <label
             className="block text-sm font-semibold mb-1"
             htmlFor="email"
-            style={{ color: colors.primary }}
+            style={{ color: colors.text }}
           >
             Email
           </label>
@@ -146,7 +146,7 @@ export default function Contact() {
           <label
             className="block text-sm font-semibold mb-1"
             htmlFor="phoneNumber"
-            style={{ color: colors.primary }}
+            style={{ color: colors.text }}
           >
             Telefone
           </label>
@@ -169,7 +169,7 @@ export default function Contact() {
           <label
             className="block text-sm font-semibold mb-1"
             htmlFor="message"
-            style={{ color: colors.primary }}
+            style={{ color: colors.text }}
           >
             Mensagem
           </label>
@@ -180,10 +180,12 @@ export default function Contact() {
             placeholder="Sua mensagem..."
             style={{
               backgroundColor: colors.buttonLightFrom,
-              color: colors.text,
               borderColor: colors.primary,
+              color: isDark ? "#000000" : colors.text, 
             }}
-            className="w-full rounded-md border px-3 py-2 shadow-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset sm:text-sm resize-none"
+            className={`w-full rounded-md border px-3 py-2 shadow-sm placeholder:${
+              isDark ? "text-gray-400" : "text-gray-300"
+            } focus:outline-none focus:ring-2 focus:ring-inset sm:text-sm resize-none`}
           />
         </div>
 
