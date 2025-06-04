@@ -1,13 +1,13 @@
 'use client';
 
 import React from "react";
-import Header from "./Header/page";
-import About from "./About/page";
-import Skills from "./Skills/page";
-import Projects from "./Projects/page";
-import Footer from "./Footer/page";
-import Hero from "./Hero/page";
-import Contact from "./Contact/page";
+import Header from "./Components/Header/page";
+import About from "./Components/About/page";
+import Skills from "./Components/Skills/page";
+import Projects from "./Components/Projects/page";
+import Footer from "./Components/Footer/page";
+import Hero from "./Components/Hero/page";
+import Contact from "./Components/Contact/page";
 
 export default function Page() {
   return (

@@ -1,11 +1,20 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { useTheme } from "../../context/ThemeContext";
+import { useTheme } from "../../../context/ThemeContext";
 import { ExternalLink, Github, ChevronLeft, ChevronRight } from "lucide-react";
 
 const projects = [
+  {
+    title: "Restaurantes do Brasil",
+    description:
+      "Plataforma para descobrir os melhores restaurantes do Brasil.",
+    image: "/images/projects/RestaurantesBrasil.png",
+    link: "https://restaurantes-brasil.vercel.app/",
+    github: "https://github.com/larissabenvenuti/Site-Restaurantes",
+    tags: ["Next.js", "TailwindCSS", "JavaScript"],
+  },
   {
     title: "Portfólio de Artista 3D",
     description: "Portfolio pessoal com projetos e informações profissionais.",
@@ -13,15 +22,6 @@ const projects = [
     link: "https://ezoyeahhh.vercel.app/",
     github: "https://github.com/larissabenvenuti/Portfolio-GabrielSanches",
     tags: ["Next.js", "Styled-components", "JavaScript"],
-  },
-  {
-    title: "Restaurantes do Brasil",
-    description:
-      "Simulação front-end de plataforma para descobrir os melhores restaurantes do Brasil.",
-    image: "/images/projects/RestaurantesBrasil.png",
-    link: "https://restaurantes-brasil.vercel.app/",
-    github: "https://github.com/larissabenvenuti/Site-Restaurantes",
-    tags: ["Next.js", "TailwindCSS", "JavaScript"],
   },
   {
     title: "MindAlign",
@@ -48,10 +48,21 @@ const Projects = () => {
   const [activeProject, setActiveProject] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
   const sectionRef = useRef(null);
+  const autoSlideIntervalRef = useRef(null);
+
+  const resetAutoSlide = useCallback(() => {
+    if (autoSlideIntervalRef.current) {
+      clearInterval(autoSlideIntervalRef.current);
+    }
+    autoSlideIntervalRef.current = setInterval(() => {
+      setActiveProject(null);
+      setCurrent((prev) => (prev + 1) % projects.length);
+    }, 10000);
+  }, [projects.length]);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768); 
+      setIsMobile(window.innerWidth <= 768);
     };
 
     handleResize();
@@ -68,9 +79,17 @@ const Projects = () => {
     visible: { opacity: 1, y: 0, scale: 1 },
   };
 
-  const nextSlide = () => setCurrent((prev) => (prev + 1) % projects.length);
-  const prevSlide = () =>
+  const nextSlide = () => {
+    setActiveProject(null);
+    setCurrent((prev) => (prev + 1) % projects.length);
+    resetAutoSlide();
+  };
+
+  const prevSlide = () => {
+    setActiveProject(null);
     setCurrent((prev) => (prev - 1 + projects.length) % projects.length);
+    resetAutoSlide();
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -78,6 +97,7 @@ const Projects = () => {
         if (entry.isIntersecting) {
           const index = Math.floor(Math.random() * projects.length);
           setCurrent(index);
+          resetAutoSlide();
         }
       },
       { threshold: 0.5 }
@@ -85,18 +105,26 @@ const Projects = () => {
 
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => sectionRef.current && observer.unobserve(sectionRef.current);
-  }, []);
+  }, [projects.length, resetAutoSlide]);
 
   useEffect(() => {
-    const intervalId = setInterval(nextSlide, 7000);
-    return () => clearInterval(intervalId);
-  }, []);
+    resetAutoSlide();
+    return () => {
+      if (autoSlideIntervalRef.current) {
+        clearInterval(autoSlideIntervalRef.current);
+      }
+    };
+  }, [current, resetAutoSlide]);
 
   const toggleDescription = (index) => {
-    if (isMobile) {
-      setActiveProject(activeProject === index ? null : index);
+    if (activeProject === index) {
+      setActiveProject(null);
+      resetAutoSlide();
     } else {
-      setActiveProject(activeProject === index ? null : index);
+      setActiveProject(index);
+      if (autoSlideIntervalRef.current) {
+        clearInterval(autoSlideIntervalRef.current);
+      }
     }
   };
 
@@ -104,13 +132,9 @@ const Projects = () => {
     <motion.section
       ref={sectionRef}
       id="projetos"
-      className="flex flex-col items-center justify-center text-center gap-2 px-4"
+      className="flex flex-col items-center justify-center text-center gap-2 px-4 min-h-screen py-16 sm:py-20"
       style={{
-        backgroundColor: colors.background,
         color: colors.text,
-        minHeight: "100vh",
-        paddingTop: "4rem",
-        paddingBottom: "4rem",
         scrollMarginTop: "100px",
       }}
       initial="hidden"
@@ -127,7 +151,7 @@ const Projects = () => {
         Projetos
       </motion.h2>
       <motion.p
-        className="text-lg sm:text-xl font-medium text-center max-w-2xl"
+        className="text-lg sm:text-xl font-medium text-center max-w-2xl mb-8"
         style={{ color: colors.text }}
         variants={animationVariants}
         initial="hidden"
@@ -139,7 +163,7 @@ const Projects = () => {
       </motion.p>
 
       <div
-        className="relative w-full max-w-[580px] flex justify-center"
+        className="relative w-full max-w-[580px] flex justify-center items-center mx-auto"
         style={{ aspectRatio: "5 / 4" }}
       >
         <svg
@@ -176,7 +200,7 @@ const Projects = () => {
         </svg>
 
         <div
-          className="absolute overflow-hidden rounded-md"
+          className="absolute overflow-hidden rounded-md flex justify-center items-center"
           style={{
             top: "18.5%",
             left: "11.5%",
@@ -187,7 +211,7 @@ const Projects = () => {
           {projects.map((project, index) => (
             <motion.div
               key={index}
-              className="absolute inset-0"
+              className="absolute inset-0 flex justify-center items-center"
               initial={{ opacity: 0 }}
               animate={{ opacity: index === current ? 1 : 0 }}
               transition={{ duration: 0.5 }}
@@ -196,7 +220,7 @@ const Projects = () => {
               <img
                 src={project.image}
                 alt={project.title}
-                className="w-full h-full object-contain cursor-pointer"
+                className="max-w-full max-h-full object-contain cursor-pointer"
                 onClick={() => toggleDescription(index)}
                 draggable={false}
               />
@@ -235,8 +259,12 @@ const Projects = () => {
                     </div>
                   ) : (
                     <>
-                      <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                      <p className="text-sm mb-4 max-w-xs">{project.description}</p>
+                      <h3 className="text-xl font-bold mb-2">
+                        {project.title}
+                      </h3>
+                      <p className="text-sm mb-4 max-w-xs">
+                        {project.description}
+                      </p>
 
                       <div className="flex gap-4 mb-4">
                         <a

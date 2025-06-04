@@ -2,9 +2,9 @@
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
-import { useTheme } from "../../context/ThemeContext";
+import { useTheme } from "../../../context/ThemeContext";
 import Link from "next/link";
-import aboutImage from "../../../public/images/avatar.jpg";
+import aboutImage from "../../../../public/images/avatar.jpg";
 import { motion } from "framer-motion";
 import { Linkedin, Github, Mail, Download, ExternalLink } from "lucide-react";
 
@@ -33,13 +33,13 @@ const About = () => {
       label: "Currículo",
       icon: Download,
       download: true,
-      useLink: false, 
+      useLink: false,
     },
     {
       href: "mailto:larissabenvenutia@gmail.com",
       label: "E-mail",
       icon: Mail,
-      useLink: false, 
+      useLink: false,
     },
   ];
 
@@ -87,7 +87,6 @@ const About = () => {
       id="sobre"
       ref={aboutRef}
       className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-16 sm:py-20"
-      style={{ backgroundColor: colors.background, color: colors.text }}
       aria-label="Seção sobre Larissa Benvenuti"
     >
       <div className="max-w-6xl w-full flex flex-col lg:flex-row items-center justify-center gap-8 sm:gap-12 lg:gap-20">
@@ -116,7 +115,7 @@ const About = () => {
         >
           <h1
             className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight"
-            style={{ color: colors.primary }}
+            style={{ color: colors.primary }} 
           >
             Sobre mim
           </h1>

@@ -42,7 +42,7 @@ export default function Contact() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) setInView(true);
+        setInView(entry.isIntersecting);
       },
       { threshold: 0.2 }
     );
@@ -60,7 +60,6 @@ export default function Contact() {
       ref={contactRef}
       className="min-h-screen flex flex-col justify-center items-center py-16 px-4 sm:px-8 md:px-16 transition-colors duration-500"
       style={{
-        backgroundColor: colors.background,
         color: colors.text,
       }}
     >
@@ -101,7 +100,7 @@ export default function Contact() {
               required: "Nome é requerido.",
               minLength: {
                 value: 5,
-                message: "Nome precisa ter pelo menos 5 caracteres",
+                message: "Nome precisa ter pelo menos 5 caracteres, por favor, insira seu nome completo.",
               },
             })}
             type="text"
@@ -109,10 +108,11 @@ export default function Contact() {
             placeholder="Seu nome"
             style={{
               backgroundColor: colors.buttonLightFrom,
-              color: isDark ? "#000000" : colors.text, 
+              color: isDark ? colors.background : colors.text,
               borderColor: colors.primary,
+              "--placeholder-color": isDark ? colors.background : colors.text,
             }}
-            className="w-full rounded-md border px-3 py-2 shadow-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset sm:text-sm"
+            className="w-full rounded-md border px-3 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-inset sm:text-sm"
           />
           {errors?.name && (
             <p className="mt-1 text-xs text-red-500">{errors.name.message}</p>
@@ -135,10 +135,11 @@ export default function Contact() {
             autoComplete="email"
             style={{
               backgroundColor: colors.buttonLightFrom,
-              color: isDark ? "#000000" : colors.text, 
+              color: isDark ? colors.background : colors.text, 
               borderColor: colors.primary,
+              "--placeholder-color": isDark ? colors.background : colors.text,
             }}
-            className="w-full rounded-md border px-3 py-2 shadow-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset sm:text-sm"
+            className="w-full rounded-md border px-3 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-inset sm:text-sm"
           />
         </div>
 
@@ -158,17 +159,18 @@ export default function Contact() {
             autoComplete="tel"
             style={{
               backgroundColor: colors.buttonLightFrom,
-              color: isDark ? "#000000" : colors.text, 
+              color: isDark ? colors.background : colors.text, 
               borderColor: colors.primary,
+              "--placeholder-color": isDark ? colors.background : colors.text,
             }}
-            className="w-full rounded-md border px-3 py-2 shadow-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset sm:text-sm"
+            className="w-full rounded-md border px-3 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-inset sm:text-sm"
           />
         </div>
 
         <div className="col-span-2">
           <label
             className="block text-sm font-semibold mb-1"
-            htmlFor="message"
+            html_for="message"
             style={{ color: colors.text }}
           >
             Mensagem
@@ -181,11 +183,10 @@ export default function Contact() {
             style={{
               backgroundColor: colors.buttonLightFrom,
               borderColor: colors.primary,
-              color: isDark ? "#000000" : colors.text, 
+              color: isDark ? colors.background : colors.text, 
+              "--placeholder-color": isDark ? colors.background : colors.text,
             }}
-            className={`w-full rounded-md border px-3 py-2 shadow-sm placeholder:${
-              isDark ? "text-gray-400" : "text-gray-300"
-            } focus:outline-none focus:ring-2 focus:ring-inset sm:text-sm resize-none`}
+            className="w-full rounded-md border px-3 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-inset sm:text-sm resize-none"
           />
         </div>
 

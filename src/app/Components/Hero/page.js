@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useTheme } from "../../context/ThemeContext";
+import { useTheme } from "../../../context/ThemeContext";
 import { Typewriter } from "react-simple-typewriter";
 import { motion } from "framer-motion";
 
@@ -28,7 +28,6 @@ const Hero = () => {
     <section
       id="home"
       className="relative flex flex-col items-center justify-center min-h-screen px-8 md:px-20 py-20 transition-colors duration-500 overflow-hidden"
-      style={{ backgroundColor: colors.background }}
     >
       <div className="absolute inset-0 opacity-20 pointer-events-none select-none">
         <div className="w-full h-full" />
@@ -41,9 +40,9 @@ const Hero = () => {
         className="z-10 flex flex-col items-center text-center max-w-3xl"
       >
         <h1
-          className="text-4xl md:text-5xl font-extrabold tracking-tight leading-tight mb-4"
+          className="text-4xl md:text-5xl font-extrabold tracking-tight leading-tight mb-4 min-h-[60px]"
           style={{
-            color: colors.text,
+            color: colors.text, 
           }}
         >
           <Typewriter
@@ -58,7 +57,7 @@ const Hero = () => {
 
         <motion.p
           className="text-xl md:text-2xl font-semibold mb-2"
-          style={{ color: colors.accent }}
+          style={{ color: colors.text }} 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 0.6 }}
@@ -68,7 +67,7 @@ const Hero = () => {
 
         <motion.p
           className="text-base md:text-lg leading-relaxed text-center px-2 mb-6"
-          style={{ color: colors.textMuted }}
+          style={{ color: colors.text }} 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.3, duration: 0.6 }}

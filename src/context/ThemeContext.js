@@ -1,5 +1,6 @@
+"use client";
+
 import { createContext, useState, useEffect, useContext } from "react";
-import Head from "next/head";
 
 const ThemeContext = createContext({
   isDark: false,
@@ -15,32 +16,32 @@ export const ThemeProvider = ({ children }) => {
 
   const colors = isDark
     ? {
-        primary: "#ffffff",
-        secondary: "#000000",
-        background: "#121212",
-        text: "#ffffff",
-        buttonFrom: "#4a4a4a",
-        buttonTo: "#2d2d2d",
-        buttonLightFrom: "#ffffff",
-        buttonLightTo: "#ffffff",
-        buttonDarkText: "#ffffff",
-        buttonDarkHover: "#333333",
-        buttonLightText: "#000000",
-        buttonLightHover: "#ffffff",
+        primary: "#E0E0E0",
+        secondary: "#A0A0A0",
+        background: "#1A1A1A",
+        text: "#F0F0F0",
+        buttonFrom: "#333333",
+        buttonTo: "#555555",
+        buttonLightFrom: "#BBBBBB",
+        buttonLightTo: "#999999",
+        buttonDarkText: "#F0F0F0",
+        buttonDarkHover: "#444444",
+        buttonLightText: "#1A1A1A",
+        buttonLightHover: "#DDDDDD",
       }
     : {
-        primary: "#BD5555",
-        secondary: "#55BDBD",
-        background: "#ffffff",
-        text: "#000000",
-        buttonFrom: "#f0ecfc",
-        buttonTo: "#E87373",
-        buttonLightFrom: "#ffffff",
-        buttonLightTo: "#E87373",
-        buttonDarkText: "#ffffff",
-        buttonDarkHover: "#333333",
-        buttonLightText: "#000000",
-        buttonLightHover: "#ffffff",
+        primary: "#E53E3E",
+        secondary: "#B83280",
+        background: "#F7FAFC",
+        text: "#2D3748",
+        buttonFrom: "#FBD8D8",
+        buttonTo: "#E68383",
+        buttonLightFrom: "#FFFFFF",
+        buttonLightTo: "#F0F0F0",
+        buttonDarkText: "#2D3748",
+        buttonDarkHover: "#DEDEDE",
+        buttonLightText: "#2D3748",
+        buttonLightHover: "#BDBDBD",
       };
 
   useEffect(() => {
@@ -53,31 +54,30 @@ export const ThemeProvider = ({ children }) => {
   useEffect(() => {
     if (isMounted) {
       const root = document.documentElement;
+
       root.style.setProperty("--primary-color", colors.primary);
       root.style.setProperty("--secondary-color", colors.secondary);
       root.style.setProperty("--background-color", colors.background);
       root.style.setProperty("--text-color", colors.text);
       document.documentElement.setAttribute("data-theme", isDark ? "dark" : "light");
 
+      const currentPrimaryHex = colors.primary;
+      const r = parseInt(currentPrimaryHex.substring(1, 3), 16);
+      const g = parseInt(currentPrimaryHex.substring(3, 5), 16);
+      const b = parseInt(currentPrimaryHex.substring(5, 7), 16);
+      root.style.setProperty('--sparkle-color-rgb', `${r}, ${g}, ${b}`);
+
       localStorage.setItem("theme", isDark ? "dark" : "light");
     }
-  }, [isDark, isMounted]);
+  }, [isDark, isMounted, colors]);
 
   const toggleTheme = () => setIsDark((prev) => !prev);
 
   if (!isMounted) return null;
 
   return (
-    <>
-      <Head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600&display=swap"
-          rel="stylesheet"
-        />
-      </Head>
-      <ThemeContext.Provider value={{ isDark, toggleTheme, colors }}>
-        {children}
-      </ThemeContext.Provider>
-    </>
+    <ThemeContext.Provider value={{ isDark, toggleTheme, colors }}>
+      {children}
+    </ThemeContext.Provider>
   );
 };
