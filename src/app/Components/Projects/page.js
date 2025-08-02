@@ -7,13 +7,13 @@ import { ExternalLink, Github, ChevronLeft, ChevronRight } from "lucide-react";
 
 const projects = [
   {
-    title: "Restaurantes do Brasil",
+    title: "Brewtopia",
     description:
-      "Plataforma para descobrir os melhores restaurantes do Brasil.",
-    image: "/images/projects/RestaurantesBrasil.png",
-    link: "https://restaurantes-brasil.vercel.app/",
-    github: "https://github.com/larissabenvenuti/Site-Restaurantes",
-    tags: ["Next.js", "TailwindCSS", "JavaScript"],
+      "Landing Page de cervejaria fictícia.",
+    image: "/images/projects/Brewtopia.png",
+    link: "https://brewtopia-cervejaria.vercel.app/",
+    github: "https://github.com/larissabenvenuti/Brewtopia",
+    tags: ["Next.js", "JavaScript", "CSS"],
   },
   {
     title: "Portfólio de Artista 3D",
@@ -22,6 +22,15 @@ const projects = [
     link: "https://ezoyeahhh.vercel.app/",
     github: "https://github.com/larissabenvenuti/Portfolio-GabrielSanches",
     tags: ["Next.js", "Styled-components", "JavaScript"],
+  },
+    {
+    title: "Restaurantes do Brasil",
+    description:
+      "Plataforma para descobrir os melhores restaurantes do Brasil.",
+    image: "/images/projects/RestaurantesBrasil.png",
+    link: "https://restaurantes-brasil.vercel.app/",
+    github: "https://github.com/larissabenvenuti/Site-Restaurantes",
+    tags: ["Next.js", "TailwindCSS", "JavaScript"],
   },
   {
     title: "MindAlign",
