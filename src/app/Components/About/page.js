@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 import { useTheme } from "../../../context/ThemeContext";
 import Link from "next/link";
-import aboutImage from "../../../../public/images/avatar.jpg";
+import aboutImage from "../../../../public/images/avatar.png";
 import { motion } from "framer-motion";
 import { Linkedin, Github, Mail, Download, ExternalLink } from "lucide-react";
 
@@ -115,7 +115,7 @@ const About = () => {
         >
           <h1
             className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight"
-            style={{ color: colors.primary }} 
+            style={{ color: colors.primary }}
           >
             Sobre mim
           </h1>
@@ -130,11 +130,12 @@ const About = () => {
 
             <p className="text-base sm:text-lg leading-relaxed">
               Crio aplicações web modernas e responsivas utilizando{" "}
-              <strong>React</strong>, <strong>Next.js</strong>,{" "}
-              <strong>Styled-components</strong> e <strong>TailwindCSS</strong>,
-              sempre focada em entregar a melhor experiência para os usuários.
-              Também atuo no back-end com <strong>Python</strong> e{" "}
-              <strong>Java</strong>.
+              <strong>React</strong>, <strong>Next.js</strong> e {" "}
+              <strong>VTEX IO</strong>, sempre focada em entregar a melhor
+              experiência para os usuários. Também atuo no back-end com{" "}
+              <strong>Node</strong> e tenho conhecimento básico em Java e Python.
+              Para integração com API, uso <strong>GRAPHQL</strong> e{" "}
+              <strong>REST APIs</strong>.
             </p>
           </div>
 

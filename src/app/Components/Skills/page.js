@@ -5,21 +5,21 @@ import { useTheme } from "../../../context/ThemeContext";
 import { motion, useReducedMotion } from "framer-motion";
 
 const skills = [
-  "React",
-  "JavaScript",
   "TypeScript",
-  "React Native",
-  "Tailwind CSS",
-  "Styled-Components",
+  "JavaScript",
+  "React.js",
   "Next.js",
+  "VTEX",
+  "GraphQL",
   "APIs REST",
+  "Node.js",
   "Python",
-  "Django",
   "Java",
-  "Spring"
+  "SCRUM",
+  "React Native"
 ];
 
-const Skills = () => {
+const Skills = React.memo(() => {
   const { isDark, colors } = useTheme();
   const [inView, setInView] = useState(false);
   const skillsRef = useRef(null);
@@ -75,7 +75,7 @@ const Skills = () => {
         >
           <h2
             className="text-4xl md:text-5xl font-extrabold leading-tight mb-6"
-            style={{ color: colors.primary }} 
+            style={{ color: colors.primary }}
           >
             Skills
           </h2>
@@ -83,7 +83,7 @@ const Skills = () => {
             className="text-lg leading-relaxed font-medium"
             style={{ color: colors.text }}
           >
-            Algumas das tecnologias que utilizo para criar projetos incríveis.
+            Algumas das minhas hard skills.
           </p>
         </motion.div>
 
@@ -115,6 +115,8 @@ const Skills = () => {
       </div>
     </section>
   );
-};
+});
+
+Skills.displayName = 'Skills';
 
 export default Skills;

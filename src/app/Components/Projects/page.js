@@ -37,8 +37,8 @@ const projects = [
     description: "Aplicativo para organização pessoal e produtividade.",
     image: "/images/projects/MindAlign.png",
     link: "https://mind-align.vercel.app/",
-    github: "https://github.com/larissabenvenuti/MindAlign",
-    tags: ["React", "Styled-components", "JavaScript"],
+    github: "https://github.com/larissabenvenuti/MindAlign-FrontEnd",
+    tags: ["React", "TypeScript", "Vite", "TailwindCSS"],
   },
   {
     title: "GitHub Profile Searcher",
