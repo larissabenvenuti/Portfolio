@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 import { useTheme } from "../../../context/ThemeContext";
 import Link from "next/link";
-import aboutImage from "../../../../public/images/avatar.png";
+import aboutImage from "../../../../public/images/avatar.jpg";
 import { motion } from "framer-motion";
 import { Linkedin, Github, Mail, Download, ExternalLink } from "lucide-react";
 
@@ -131,7 +131,7 @@ const About = () => {
             <p className="text-base sm:text-lg leading-relaxed">
               Crio aplicações web modernas e responsivas utilizando{" "}
               <strong>React</strong>, <strong>Next.js</strong> e {" "}
-              <strong>VTEX IO</strong>, sempre focada em entregar a melhor
+              <strong>VTEX (Fast Store e IO)</strong>, sempre focada em entregar a melhor
               experiência para os usuários. Também atuo no back-end com{" "}
               <strong>Node</strong> e tenho conhecimento básico em Java e Python.
               Para integração com API, uso <strong>GRAPHQL</strong> e{" "}
