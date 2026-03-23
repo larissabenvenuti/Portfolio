@@ -20,8 +20,8 @@ const projects = [
     description: "Portfolio pessoal com projetos e informações profissionais.",
     image: "/images/projects/GabrielSanchesPortfolio.png",
     link: "https://ezoyeahhh.vercel.app/",
-    github: "https://github.com/larissabenvenuti/Portfolio-GabrielSanches",
-    tags: ["Next.js", "Styled-components", "JavaScript"],
+    github: "https://github.com/larissabenvenuti/GabrielSanches-Portfolio",
+    tags: ["Next.js", "TypeScript", "SCSS"],
   },
     {
     title: "Restaurantes do Brasil",
@@ -30,7 +30,7 @@ const projects = [
     image: "/images/projects/RestaurantesBrasil.png",
     link: "https://restaurantes-brasil.vercel.app/",
     github: "https://github.com/larissabenvenuti/Site-Restaurantes",
-    tags: ["Next.js", "TailwindCSS", "JavaScript"],
+    tags: ["Next.js", "JavaScript", "TailwindCSS"],
   },
   {
     title: "MindAlign",
@@ -38,7 +38,7 @@ const projects = [
     image: "/images/projects/MindAlign.png",
     link: "https://mind-align.vercel.app/",
     github: "https://github.com/larissabenvenuti/MindAlign-FrontEnd",
-    tags: ["React", "TypeScript", "Vite", "TailwindCSS"],
+    tags: ["React", "TypeScript", "TailwindCSS"],
   },
   {
     title: "GitHub Profile Searcher",
@@ -46,7 +46,7 @@ const projects = [
     image: "/images/projects/GithubProfileSearcher.png",
     link: "https://githubprofilesearcher.vercel.app/",
     github: "https://github.com/larissabenvenuti/Github-Profile-Searcher",
-    tags: ["React", "Styled-Components", "Javascript"],
+    tags: ["React", "Javascript", "Styled-Components"],
   },
 ];
 
